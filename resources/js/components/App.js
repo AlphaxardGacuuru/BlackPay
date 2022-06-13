@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route } from 'react-router-dom'
 import axios from 'axios';
@@ -6,13 +6,21 @@ import axios from 'axios';
 import TopNav from './TopNav';
 import BottomNav from './BottomNav';
 
+import LoginPopUp from '../auth/LoginPopUp'
+import Login from '../auth/Login'
+import Register from '../auth/Register'
+
+import { random } from 'lodash';
+require('lodash')
+Object.keys(require.cache)
+
 function App() {
 
 	// console.log(process.env.MIX_APP_URL)
 
 	const url = window.location.href.match(/https/) ?
-		'https://music.black.co.ke' :
-		'http://localhost:3000'
+		'https://pay.black.co.ke' :
+		'http://localhost:8002'
 
 	axios.defaults.baseURL = url
 
@@ -49,6 +57,13 @@ function App() {
 		setTimeout(() => setMessages([]), 2900);
 	}
 
+	// Fetch data once on page load
+	useEffect(() => {
+		axios.get('/api/home')
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err))
+	}, [])
+
 	console.log("rendered")
 
 	/*
@@ -66,7 +81,7 @@ function App() {
 
 	/*
 	*
-	* PWA Install button */
+	* PWA Install Btn */
 	let deferredPrompt;
 	var btnAdd = useRef()
 	const [downloadLink, setDownloadLink] = useState();
@@ -76,10 +91,10 @@ function App() {
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
 
-		// Show the button
+		// Show the Btn
 		setDownloadLink(true)
 
-		// Action when button is clicked
+		// Action when Btn is clicked
 		btnAdd.current.addEventListener('click', (e) => {
 			// Show install banner
 			deferredPrompt.prompt();
@@ -113,6 +128,10 @@ function App() {
 	return (
 		<Router>
 			<TopNav {...GLOBAL_STATE} />
+
+			<Route path="/login" exact render={(props) => (<Login {...GLOBAL_STATE} />)} />
+			<Route path="/register/:name/:email/:avatar" exact render={(props) => (<Register {...GLOBAL_STATE} />)} />
+
 			<BottomNav {...GLOBAL_STATE} />
 		</Router>
 	);

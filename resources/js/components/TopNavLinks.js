@@ -16,7 +16,7 @@ const TopNavLinks = (props) => {
 			<div className="dropdown mr-3">
 				<Link
 					to="#"
-					role="button"
+					role="Btn"
 					id="dropdownMenua"
 					className="hidden"
 					data-toggle="dropdown"
@@ -91,7 +91,7 @@ const TopNavLinks = (props) => {
 			<div className="dropdown">
 				<Link
 					to="#"
-					role="button"
+					role="Btn"
 					id="dropdownMenua"
 					className="hidden"
 					data-toggle="dropdown"

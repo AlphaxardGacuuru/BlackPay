@@ -5,10 +5,13 @@ import axios from 'axios';
 
 import TopNav from './TopNav';
 import BottomNav from './BottomNav';
+import ScrollToTop from "./ScrollToTop"
 
 import LoginPopUp from '../auth/LoginPopUp'
 import Login from '../auth/Login'
 import Register from '../auth/Register'
+
+import Index from '../pages/Index'
 
 import { random } from 'lodash';
 require('lodash')
@@ -131,6 +134,8 @@ function App() {
 
 			<Route path="/login" exact render={(props) => (<Login {...GLOBAL_STATE} />)} />
 			<Route path="/register/:name/:email/:avatar" exact render={(props) => (<Register {...GLOBAL_STATE} />)} />
+
+			<Route path="/" exact render={(props) => (<Index {...GLOBAL_STATE} />)} />
 
 			<BottomNav {...GLOBAL_STATE} />
 		</Router>

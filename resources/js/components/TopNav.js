@@ -129,7 +129,7 @@ const TopNav = (props) => {
 									</Link>
 								</li>
 								<li className='nav-item active'>
-									<Link to='/library'
+									<Link to='/history'
 										style={{ color: location.pathname == "/history" ? "#006F3E" : "white" }}
 										className='nav-link'
 										onClick={() => setMenu("")}>
@@ -137,7 +137,7 @@ const TopNav = (props) => {
 											style={{
 												float: "left",
 												paddingRight: "20px",
-												color: location.pathname == "/library" ? "#006F3E" : "white"
+												color: location.pathname == "/history" ? "#006F3E" : "white"
 											}}>
 											<svg className="bi bi-person" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
 												xmlns="http://www.w3.org/2000/svg">
@@ -163,7 +163,12 @@ const TopNav = (props) => {
 								<div className="menu-area d-flex justify-content-between">
 									{/* <!-- Logo Area  --> */}
 									<div className="logo-area">
-										<Link to="/">Black Pay</Link>
+										<Link to="/">
+											<Img
+												src="/android-chrome-512x512.png"
+												width="50px"
+												height="50px" />
+										</Link>
 									</div>
 									<div className="menu-content-area d-flex align-items-center">
 										{/* <!-- Header Social Area --> */}
@@ -216,10 +221,10 @@ const TopNav = (props) => {
 				<br />
 				<br />
 				{/* Remove for profile page for better background image */}
-					<span>
-						<br />
-						<br className="hidden" />
-					</span>
+				<span>
+					<br />
+					<br className="hidden" />
+				</span>
 			</div>
 
 			{/* Sliding Bottom Nav */}

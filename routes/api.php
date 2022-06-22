@@ -15,10 +15,6 @@ use Illuminate\Support\Str;
 |
  */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

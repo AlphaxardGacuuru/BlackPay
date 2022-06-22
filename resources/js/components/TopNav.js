@@ -100,7 +100,14 @@ const TopNav = (props) => {
 					</div>
 					{/* <!-- Logo Area --> */}
 					<div className="logo-area">
-						<Link to="/">Black Pay</Link>
+						<Link to="/" style={{ color: "#006F3E" }}>
+							<Img
+								src="/android-chrome-512x512.png"
+								width="50px"
+								height="50px"
+								imgClass="mr-2" />
+							Black Pay
+						</Link>
 					</div>
 					{/* <!-- Nav --> */}
 					<div className="sonarNav wow fadeInUp" data-wow-delay="1s">
@@ -163,11 +170,13 @@ const TopNav = (props) => {
 								<div className="menu-area d-flex justify-content-between">
 									{/* <!-- Logo Area  --> */}
 									<div className="logo-area">
-										<Link to="/">
+										<Link to="/" style={{ color: "#006F3E" }}>
 											<Img
 												src="/android-chrome-512x512.png"
 												width="50px"
-												height="50px" />
+												height="50px"
+												imgClass="mr-2" />
+											Black Pay
 										</Link>
 									</div>
 									<div className="menu-content-area d-flex align-items-center">

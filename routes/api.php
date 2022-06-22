@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -21,17 +20,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('qr-code-generator', function () {
 
-	// Generate unique name
-	$uniqueName = Str::random(4);
+    // Generate unique name
+    $uniqueName = Str::random(4);
 
-	// Generate url
-	$url = "https://pay.black.co.ke/api/token/" . $uniqueName;
+    // Generate url
+    $url = "https://pay.black.co.ke/api/token/" . $uniqueName;
 
-    \QrCode::size(500)
+    return \QrCode::size(500)
         ->format('png')
-		->color(0, 0, 0, 100)
-		->backgroundColor(0, 111, 62, 100)
-		->margin(2)
-		->merge('/public/android-chrome-512x512.png')
+        ->color(0, 0, 0, 100)
+        ->backgroundColor(0, 111, 62, 100)
+        ->margin(2)
+        ->merge('/public/android-chrome-512x512.png')
         ->generate('ItSolutionStuff.com', public_path('storage/qr-codes/' . $uniqueName . '.png'));
 });

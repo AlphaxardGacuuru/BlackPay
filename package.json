@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "react-qr-reader": "^3.0.0-beta-1",
         "react-router-dom": "^5.2.0",
         "react-social-login-buttons": "^3.6.0"
     }

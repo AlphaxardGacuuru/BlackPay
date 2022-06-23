@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import HomeSVG from '../svgs/HomeSVG';
 import PersonSVG from '../svgs/PersonSVG';
+import ScannerSVG from '../svgs/ScannerSVG';
 
 const Bottomnav = (props) => {
 
@@ -46,6 +47,25 @@ const Bottomnav = (props) => {
 							</span>
 						</Link>
 						{/* Home End */}
+						{/* Parking */}
+						<Link
+							to="/parking-scanner"
+							style={{
+								textAlign: "center",
+								fontSize: "10px",
+								fontWeight: "100"
+							}}>
+							<span
+								style={{
+									fontSize: "20px",
+									margin: "0",
+									color: location.pathname == "/parking-scanner" ? "#006F3E" : "white"
+								}}
+								className="nav-link">
+								<ScannerSVG />
+							</span>
+						</Link>
+						{/* Parking End */}
 						{/* History */}
 						<Link
 							to="/history"

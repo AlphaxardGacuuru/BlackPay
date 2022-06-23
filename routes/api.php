@@ -18,13 +18,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Payments route
+
+
+// Generate QR Codes
 Route::get('qr-code-generator', function () {
 
     // Generate unique name
     $uniqueName = Str::random(4);
-
-    // Generate url
-    $url = "https://pay.black.co.ke/api/token/" . $uniqueName;
 
     return \QrCode::size(500)
         ->format('png')
@@ -32,7 +33,6 @@ Route::get('qr-code-generator', function () {
         ->backgroundColor(0, 111, 62, 100)
         ->margin(2)
         ->merge('/public/android-chrome-512x512.png', .2)
-		->errorCorrection('H')
-        ->generate('gSdr', public_path('storage/qr-codes/' . $uniqueName . '.png'));
-        // ->generate($url, public_path('storage/qr-codes/' . $uniqueName . '.png'));
+        ->errorCorrection('H')
+        ->generate($uniqueName, public_path('storage/qr-codes/' . $uniqueName . '.png'));
 });

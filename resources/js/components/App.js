@@ -12,6 +12,7 @@ import Login from '../auth/Login'
 import Register from '../auth/Register'
 
 import Index from '../pages/Index'
+import ParkingScanner from '../pages/ParkingScanner'
 
 import { random } from 'lodash';
 require('lodash')
@@ -130,12 +131,14 @@ function App() {
 
 	return (
 		<Router>
+			<ScrollToTop />
 			<TopNav {...GLOBAL_STATE} />
 
 			<Route path="/login" exact render={(props) => (<Login {...GLOBAL_STATE} />)} />
 			<Route path="/register/:name/:email/:avatar" exact render={(props) => (<Register {...GLOBAL_STATE} />)} />
 
 			<Route path="/" exact render={(props) => (<Index {...GLOBAL_STATE} />)} />
+			<Route path="/parking-scanner" exact render={(props) => (<ParkingScanner {...GLOBAL_STATE} />)} />
 
 			<BottomNav {...GLOBAL_STATE} />
 		</Router>

@@ -29,8 +29,10 @@ const Index = () => {
 					}}
 					legacyMode />
 				<br />
-
-				<h6>Scanned code: {data}</h6>
+				<center>
+					<h6>Scanned code</h6>
+					<p>{data}</p>
+				</center>
 			</div>
 			<div className="col-sm-4"></div>
 		</div>

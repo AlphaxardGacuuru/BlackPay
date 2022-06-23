@@ -20,8 +20,10 @@ const Index = () => {
 				<QrReader
 					constraints={{ facingMode: 'environment' }}
 					delay={300}
-					style={{ width: "100%" }}
-					className="border border-dark"
+					// containerStyle={{ border: "1px solid #006F3E" }}
+					videoContainerStyle={{ border: "1px solid #006F3E" }}
+					videoStyle={{ border: "1px solid #006F3E" }}
+					className="p-2"
 					onResult={(result, error) => {
 						if (!!result) {
 							setData(result?.text);

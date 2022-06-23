@@ -70929,8 +70929,8 @@ var TopNav = function TopNav(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Img__WEBPACK_IMPORTED_MODULE_3__["default"], {
     src: "/android-chrome-512x512.png",
-    width: "50px",
-    height: "50px",
+    width: "30px",
+    height: "30px",
     imgClass: "mr-2"
   }), "Black Pay")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sonarNav wow fadeInUp",
@@ -71017,8 +71017,8 @@ var TopNav = function TopNav(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Img__WEBPACK_IMPORTED_MODULE_3__["default"], {
     src: "/android-chrome-512x512.png",
-    width: "50px",
-    height: "50px",
+    width: "30px",
+    height: "30px",
     imgClass: "mr-2"
   }), "Black Pay")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-content-area d-flex align-items-center"
@@ -71405,11 +71405,15 @@ var Index = function Index() {
     constraints: {
       facingMode: 'environment'
     },
-    delay: 300,
-    style: {
-      width: "100%"
+    delay: 300 // containerStyle={{ border: "1px solid #006F3E" }}
+    ,
+    videoContainerStyle: {
+      border: "1px solid #006F3E"
     },
-    className: "border border-dark",
+    videoStyle: {
+      border: "1px solid #006F3E"
+    },
+    className: "p-2",
     onResult: function onResult(result, error) {
       if (!!result) {
         setData(result === null || result === void 0 ? void 0 : result.text);

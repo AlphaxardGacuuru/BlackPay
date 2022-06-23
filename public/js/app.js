@@ -71390,7 +71390,10 @@ var Index = function Index() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       data = _useState2[0],
-      setData = _useState2[1];
+      setData = _useState2[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+  // .then((res) => console.log(res))
+  // .catch((err) => console.log(err))
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
@@ -71400,7 +71403,7 @@ var Index = function Index() {
     className: "col-sm-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_3__["QrReader"], {
     constraints: {
-      facingMode: 'user'
+      facingMode: 'environment'
     },
     delay: 300,
     style: {

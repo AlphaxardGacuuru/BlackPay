@@ -9,12 +9,16 @@ const Index = () => {
 
 	const [data, setData] = useState()
 
+	// navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+	// .then((res) => console.log(res))
+	// .catch((err) => console.log(err))
+
 	return (
 		<div className="row">
 			<div className="col-sm-4"></div>
 			<div className="col-sm-4">
 				<QrReader
-					constraints={{ facingMode: 'user' }}
+					constraints={{ facingMode: 'environment' }}
 					delay={300}
 					style={{ width: "100%" }}
 					className="border border-dark"
@@ -28,6 +32,7 @@ const Index = () => {
 						}
 					}}
 					legacyMode />
+
 				<br />
 				<center>
 					<h6>Scanned code</h6>

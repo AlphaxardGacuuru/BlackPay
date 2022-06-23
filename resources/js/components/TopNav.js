@@ -103,8 +103,8 @@ const TopNav = (props) => {
 						<Link to="/" style={{ color: "#006F3E" }}>
 							<Img
 								src="/android-chrome-512x512.png"
-								width="30px"
-								height="30px"
+								width="40px"
+								height="40px"
 								imgClass="mr-2" />
 							Black Pay
 						</Link>
@@ -173,8 +173,8 @@ const TopNav = (props) => {
 										<Link to="/" style={{ color: "#006F3E" }}>
 											<Img
 												src="/android-chrome-512x512.png"
-												width="30px"
-												height="30px"
+												width="40px"
+												height="40px"
 												imgClass="mr-2" />
 											Black Pay
 										</Link>

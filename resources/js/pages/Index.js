@@ -17,26 +17,27 @@ const Index = () => {
 		<div className="row">
 			<div className="col-sm-4"></div>
 			<div className="col-sm-4">
-				<QrReader
-					constraints={{ facingMode: 'environment' }}
-					delay={300}
-					// containerStyle={{ border: "1px solid #006F3E" }}
-					videoContainerStyle={{ border: "1px solid #006F3E" }}
-					videoStyle={{ border: "1px solid #006F3E" }}
-					className="p-2"
-					onResult={(result, error) => {
-						if (!!result) {
-							setData(result?.text);
-						}
-
-						if (!!error) {
-							console.info(error);
-						}
-					}}
-					legacyMode />
-
-				<br />
 				<center>
+					<h3>Scan QR Code</h3>
+					<QrReader
+						constraints={{ facingMode: 'environment' }}
+						delay={300}
+						// containerStyle={{ border: "1px solid #006F3E" }}
+						videoContainerStyle={{ border: "1px solid #006F3E" }}
+						// videoStyle={{ border: "1px solid #006F3E" }}
+						className="p-2"
+						onResult={(result, error) => {
+							if (!!result) {
+								setData(result?.text);
+							}
+
+							if (!!error) {
+								console.info(error);
+							}
+						}}
+						legacyMode />
+
+					<br />
 					<h6>Scanned code</h6>
 					<p>{data}</p>
 				</center>

@@ -70929,8 +70929,8 @@ var TopNav = function TopNav(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Img__WEBPACK_IMPORTED_MODULE_3__["default"], {
     src: "/android-chrome-512x512.png",
-    width: "30px",
-    height: "30px",
+    width: "40px",
+    height: "40px",
     imgClass: "mr-2"
   }), "Black Pay")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sonarNav wow fadeInUp",
@@ -71017,8 +71017,8 @@ var TopNav = function TopNav(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Img__WEBPACK_IMPORTED_MODULE_3__["default"], {
     src: "/android-chrome-512x512.png",
-    width: "30px",
-    height: "30px",
+    width: "40px",
+    height: "40px",
     imgClass: "mr-2"
   }), "Black Pay")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu-content-area d-flex align-items-center"
@@ -71401,7 +71401,7 @@ var Index = function Index() {
     className: "col-sm-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_3__["QrReader"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Scan QR Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_3__["QrReader"], {
     constraints: {
       facingMode: 'environment'
     },
@@ -71409,10 +71409,8 @@ var Index = function Index() {
     ,
     videoContainerStyle: {
       border: "1px solid #006F3E"
-    },
-    videoStyle: {
-      border: "1px solid #006F3E"
-    },
+    } // videoStyle={{ border: "1px solid #006F3E" }}
+    ,
     className: "p-2",
     onResult: function onResult(result, error) {
       if (!!result) {
@@ -71424,7 +71422,7 @@ var Index = function Index() {
       }
     },
     legacyMode: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Scanned code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, data))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Scanned code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, data))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
   }));
 };

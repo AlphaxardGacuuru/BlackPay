@@ -31,6 +31,8 @@ Route::get('qr-code-generator', function () {
         ->color(0, 0, 0, 100)
         ->backgroundColor(0, 111, 62, 100)
         ->margin(2)
-        ->merge('/public/android-chrome-512x512.png')
-        ->generate('ItSolutionStuff.com', public_path('storage/qr-codes/' . $uniqueName . '.png'));
+        ->merge('/public/android-chrome-512x512.png', .2)
+		->errorCorrection('H')
+        ->generate('gSdr', public_path('storage/qr-codes/' . $uniqueName . '.png'));
+        // ->generate($url, public_path('storage/qr-codes/' . $uniqueName . '.png'));
 });

@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Btn = ({ btnStyle, btnClass, btnText, onClick, loading }) => {
+const Btn = ({ btnStyle, btnClass, text, onClick, loading }) => {
 	return (
-		<Btn
+		<button
 			style={btnStyle}
 			className={btnClass}
 			onClick={onClick}>
-			{btnText}
+			{text}
 			{loading &&
 				<div className="spinner-border ml-2 my-auto"
 					style={{
@@ -18,13 +18,14 @@ const Btn = ({ btnStyle, btnClass, btnText, onClick, loading }) => {
 						color: "inherit"
 					}}>
 				</div>}
-		</Btn>
+		</button>
 	)
 }
 
 Btn.defaultProps = {
-	btnClass: 'sonar-btn',
-	loading: false
+	btnClass: 'btn btn-outline-success',
+	btnStyle: { borderRadius: "20px", minWidth: "100px", textTransform: "uppercase" },
+loading: false
 }
 
 export default Btn

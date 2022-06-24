@@ -70703,14 +70703,14 @@ __webpack_require__.r(__webpack_exports__);
 var Btn = function Btn(_ref) {
   var btnStyle = _ref.btnStyle,
       btnClass = _ref.btnClass,
-      btnText = _ref.btnText,
+      text = _ref.text,
       onClick = _ref.onClick,
       loading = _ref.loading;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Btn, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     style: btnStyle,
     className: btnClass,
     onClick: onClick
-  }, btnText, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, text, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "spinner-border ml-2 my-auto",
     style: {
       borderTopWidth: "2px",
@@ -70724,7 +70724,12 @@ var Btn = function Btn(_ref) {
 };
 
 Btn.defaultProps = {
-  btnClass: 'sonar-btn',
+  btnClass: 'btn btn-outline-success',
+  btnStyle: {
+    borderRadius: "20px",
+    minWidth: "100px",
+    textTransform: "uppercase"
+  },
   loading: false
 };
 /* harmony default export */ __webpack_exports__["default"] = (Btn);
@@ -70912,14 +70917,12 @@ var TopNav = function TopNav(props) {
       notifications = _useState10[0],
       setNotifications = _useState10[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    // Fetch Notifications
-    axios.get("/api/notifications").then(function (res) {
-      setNotifications(res.data);
-      props.setLocalStorage("notifications", res.data);
-    })["catch"](function () {
-      return props.setErrors(['Failed to fetch notifications']);
-    });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {// Fetch Notifications
+    // axios.get(`/api/notifications`)
+    // 	.then((res) => {
+    // 		setNotifications(res.data)
+    // 		props.setLocalStorage("notifications", res.data)
+    // 	}).catch(() => props.setErrors(['Failed to fetch notifications']))
   }, []);
 
   var logout = function logout(e) {
@@ -71465,9 +71468,10 @@ var TopNavLinks = function TopNavLinks(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Img__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Img */ "./resources/js/components/Img.js");
-/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
-/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
+/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71488,11 +71492,43 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Index = function Index(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      token = _useState2[0],
+      setToken = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      timetaken = _useState4[0],
+      setTimetaken = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      bill = _useState6[0],
+      setBill = _useState6[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
   // .then((res) => console.log(res))
   // .catch((err) => console.log(err))
 
+
+  var scrollToPayButton = function scrollToPayButton() {
+    setTimeout(function () {
+      window.scrollBy({
+        top: 200,
+        right: 0,
+        behavior: "smooth"
+      });
+    }, 1000);
+  };
+
+  var getBill = function getBill(token) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('sanctum/csrf-cookie').then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("api/tokens/".concat(token)).then(function (res) {
+        setTimetaken(res.data['timetaken']);
+        setBill('KES ' + res.data['bill']);
+        scrollToPayButton();
+      })["catch"](function (err) {
+        return props.setErrors([err.data]);
+      });
+    });
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
@@ -71500,26 +71536,61 @@ var Index = function Index(props) {
     className: "col-sm-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Scan QR Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_3__["QrReader"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      borderRadius: "30px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_2__["QrReader"], {
     constraints: {
       facingMode: 'environment'
     },
-    delay: 300 // containerStyle={{ border: "1px solid #006F3E" }}
-    // videoContainerStyle={{ border: "1px solid #006F3E" }}
-    // videoStyle={{ border: "1px solid #006F3E" }}
+    delay: 100,
+    ViewFinder: "" // containerStyle={{  }}
+    // videoContainerStyle={{  }}
+    // videoStyle={{  }}
     ,
-    className: "p-2",
+    className: "p-3",
     onResult: function onResult(result, error) {
       if (!!result) {
-        setData(result === null || result === void 0 ? void 0 : result.text);
+        setToken(result === null || result === void 0 ? void 0 : result.text);
+        getBill(result === null || result === void 0 ? void 0 : result.text);
       }
 
-      if (!!error) {
-        console.info(error);
+      if (!!error) {// console.info(error);
       }
     },
     legacyMode: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Scanned code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, data))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-dark text-light m-2 p-2 flex-fill",
+    style: {
+      borderRadius: "20px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "display-4"
+  }, token), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Code"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-primary text-light m-2 p-2 flex-fill",
+    style: {
+      borderRadius: "20px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "display-4"
+  }, timetaken), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Hours")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-success text-light m-2 p-2 flex-fill",
+    style: {
+      borderRadius: "20px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "display-4"
+  }, bill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Bill"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mt-4 p-2"
+  }, bill && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    btnClass: "w-100 btn btn-outline-success",
+    text: "pay"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
   }));
 };
@@ -71541,8 +71612,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
-/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
+/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71559,7 +71629,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var ParkingScanner = function ParkingScanner(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71567,13 +71636,13 @@ var ParkingScanner = function ParkingScanner(props) {
       setToken = _useState2[1]; // Register Token
 
 
-  var RegisterToken = function RegisterToken() {
+  var RegisterToken = function RegisterToken(token) {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/sanctum/csrf-cookie').then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/token", {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/tokens", {
         token: token
       }).then(function (res) {
-        props.messages.push(res.data);
         console.log(res.data);
+        props.setMessages([res.data]);
       })["catch"](function (err) {
         var resErrors = err.response.data.errors;
         var resError;
@@ -71584,9 +71653,7 @@ var ParkingScanner = function ParkingScanner(props) {
         } // Get other errors
 
 
-        newError.push(err.response.data.message);
         props.setErrors(newError);
-        console.log(err.response.data);
       });
     });
   };
@@ -71597,7 +71664,7 @@ var ParkingScanner = function ParkingScanner(props) {
     className: "col-sm-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Parking Scanner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_3__["QrReader"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Parking Scanner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_2__["QrReader"], {
     constraints: {
       facingMode: 'environment'
     },
@@ -71610,7 +71677,7 @@ var ParkingScanner = function ParkingScanner(props) {
       if (!!result) {
         setToken(result === null || result === void 0 ? void 0 : result.text); // Register Token
 
-        RegisterToken();
+        RegisterToken(result === null || result === void 0 ? void 0 : result.text);
       }
 
       if (!!error) {// console.info(error);

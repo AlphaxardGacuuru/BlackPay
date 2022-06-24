@@ -1,23 +1,20 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import Btn from '../components/Btn'
-
 import { QrReader } from 'react-qr-reader'
 
 const ParkingScanner = (props) => {
 
-
 	const [token, setToken] = useState()
 
 	// Register Token
-	const RegisterToken = () => {
+	const RegisterToken = (token) => {
 		axios.get('/sanctum/csrf-cookie').then(() => {
-			axios.post(`/api/token`, {
+			axios.post(`/api/tokens`, {
 				token: token
 			}).then((res) => {
-				props.messages.push(res.data)
 				console.log(res.data)
+				props.setMessages([res.data])
 			}).catch((err) => {
 				const resErrors = err.response.data.errors
 				var resError
@@ -26,9 +23,7 @@ const ParkingScanner = (props) => {
 					newError.push(resErrors[resError])
 				}
 				// Get other errors
-				newError.push(err.response.data.message)
 				props.setErrors(newError)
-				console.log(err.response.data)
 			})
 		});
 	}
@@ -50,9 +45,8 @@ const ParkingScanner = (props) => {
 						onResult={(result, error) => {
 							if (!!result) {
 								setToken(result?.text);
-
 								// Register Token
-								RegisterToken()
+								RegisterToken(result?.text)
 							}
 
 							if (!!error) {

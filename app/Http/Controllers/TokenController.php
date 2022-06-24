@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Token;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TokenController extends Controller
@@ -26,15 +27,15 @@ class TokenController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			"token" => "required|max:4"
-		]);
+            "token" => "required|max:4",
+        ]);
 
-		$token = new Token;
-		$token->token = $request->input("token");
-		$token->user_id = 1;
-		$token->save();
+        $token = new Token;
+        $token->token = $request->input("token");
+        $token->user_id = 1;
+        $token->save();
 
-		return response("Token Saved", 200);
+        return response("Token Saved", 200);
     }
 
     /**
@@ -43,9 +44,20 @@ class TokenController extends Controller
      * @param  \App\Token  $token
      * @return \Illuminate\Http\Response
      */
-    public function show(Token $token)
+    public function show($token)
     {
-        //
+        $in = Token::where('token', $token)
+            ->orderBy('id', 'desc')
+            ->first()
+            ->created_at;
+
+        $now = Carbon::now();
+
+        $timetaken = Carbon::parse($in)->diffInHours($now);
+
+        $bill = $timetaken * 50;
+
+        return response(['bill' => $bill, 'timetaken' => $timetaken], 200);
     }
 
     /**

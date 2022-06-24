@@ -19,7 +19,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Payments route
-
+Route::apiResources([
+    'token' => 'TokenController',
+]);
 
 // Generate QR Codes
 Route::get('qr-code-generator', function () {

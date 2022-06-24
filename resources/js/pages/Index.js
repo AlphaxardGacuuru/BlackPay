@@ -5,7 +5,7 @@ import Btn from '../components/Btn'
 
 import { QrReader } from 'react-qr-reader'
 
-const Index = () => {
+const Index = (props) => {
 
 	const [data, setData] = useState()
 
@@ -23,7 +23,7 @@ const Index = () => {
 						constraints={{ facingMode: 'environment' }}
 						delay={300}
 						// containerStyle={{ border: "1px solid #006F3E" }}
-						videoContainerStyle={{ border: "1px solid #006F3E" }}
+						// videoContainerStyle={{ border: "1px solid #006F3E" }}
 						// videoStyle={{ border: "1px solid #006F3E" }}
 						className="p-2"
 						onResult={(result, error) => {

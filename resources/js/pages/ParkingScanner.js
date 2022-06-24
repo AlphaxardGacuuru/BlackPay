@@ -1,21 +1,36 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import Img from '../components/Img'
 import Btn from '../components/Btn'
 
 import { QrReader } from 'react-qr-reader'
 
-const ParkingScanner = () => {
+const ParkingScanner = (props) => {
+
 
 	const [token, setToken] = useState()
 
 	// Register Token
 	const RegisterToken = () => {
-		axios
-			.post(props.url)
-			.then((res) => props.setMessages([res.data]))
-			.catch((err) => props.setErrors(err.data))
+		axios.get('/sanctum/csrf-cookie').then(() => {
+			axios.post(`/api/token`, {
+				token: token
+			}).then((res) => {
+				props.messages.push(res.data)
+				console.log(res.data)
+			}).catch((err) => {
+				const resErrors = err.response.data.errors
+				var resError
+				var newError = []
+				for (resError in resErrors) {
+					newError.push(resErrors[resError])
+				}
+				// Get other errors
+				newError.push(err.response.data.message)
+				props.setErrors(newError)
+				console.log(err.response.data)
+			})
+		});
 	}
 
 	return (
@@ -24,11 +39,12 @@ const ParkingScanner = () => {
 			<div className="col-sm-4">
 				<center>
 					<h3>Parking Scanner</h3>
+
 					<QrReader
 						constraints={{ facingMode: 'environment' }}
 						delay={300}
 						// containerStyle={{ border: "1px solid #006F3E" }}
-						videoContainerStyle={{ border: "1px solid #006F3E" }}
+						// videoContainerStyle={{ border: "1px solid #006F3E" }}
 						// videoStyle={{ border: "1px solid #006F3E" }}
 						className="p-2"
 						onResult={(result, error) => {

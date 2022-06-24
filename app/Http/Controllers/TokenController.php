@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ParkingScanner;
+use App\Token;
 use Illuminate\Http\Request;
 
-class ParkingScannerController extends Controller
+class TokenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ParkingScannerController extends Controller
      */
     public function index()
     {
-        //
+        return Token::all();
     }
 
     /**
@@ -31,10 +31,10 @@ class ParkingScannerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ParkingScanner  $parkingScanner
+     * @param  \App\Token  $token
      * @return \Illuminate\Http\Response
      */
-    public function show(ParkingScanner $parkingScanner)
+    public function show(Token $token)
     {
         //
     }
@@ -43,10 +43,10 @@ class ParkingScannerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ParkingScanner  $parkingScanner
+     * @param  \App\Token  $token
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ParkingScanner $parkingScanner)
+    public function update(Request $request, Token $token)
     {
         //
     }
@@ -54,10 +54,10 @@ class ParkingScannerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ParkingScanner  $parkingScanner
+     * @param  \App\Token  $token
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ParkingScanner $parkingScanner)
+    public function destroy(Token $token)
     {
         //
     }

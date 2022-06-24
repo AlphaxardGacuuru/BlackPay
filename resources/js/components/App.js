@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import TopNav from './TopNav';
 import BottomNav from './BottomNav';
+import Messages from './Messages'
 import ScrollToTop from "./ScrollToTop"
 
 import LoginPopUp from '../auth/LoginPopUp'
@@ -140,6 +141,7 @@ function App() {
 			<Route path="/" exact render={(props) => (<Index {...GLOBAL_STATE} />)} />
 			<Route path="/parking-scanner" exact render={(props) => (<ParkingScanner {...GLOBAL_STATE} />)} />
 
+			<Messages {...GLOBAL_STATE} />
 			<BottomNav {...GLOBAL_STATE} />
 		</Router>
 	);

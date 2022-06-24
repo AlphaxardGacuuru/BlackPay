@@ -56,7 +56,7 @@ const ParkingScanner = (props) => {
 							}
 
 							if (!!error) {
-								console.info(error);
+								// console.info(error);
 							}
 						}}
 						legacyMode />

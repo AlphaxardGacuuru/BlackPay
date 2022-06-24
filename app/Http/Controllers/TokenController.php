@@ -25,7 +25,16 @@ class TokenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+			"token" => "required|max:4"
+		]);
+
+		$token = new Token;
+		$token->token = $request->input("token");
+		$token->user_id = 1;
+		$token->save();
+
+		return response("Token Saved", 200);
     }
 
     /**

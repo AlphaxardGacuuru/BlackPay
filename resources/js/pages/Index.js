@@ -39,7 +39,7 @@ const Index = (props) => {
 			<div className="col-sm-4">
 				<div style={{ borderRadius: "30px" }}>
 					<center>
-						{/* <h3>Scan QR Code</h3> */}
+						<h3>Scan QR Code</h3>
 						<QrReader
 							constraints={{ facingMode: 'environment' }}
 							delay={100}
@@ -84,7 +84,7 @@ const Index = (props) => {
 							<h6>Bill</h6>
 						</div>
 					</div>
-					
+
 					{/* Pay Button */}
 					<div className="mt-4 p-2">
 						{bill &&

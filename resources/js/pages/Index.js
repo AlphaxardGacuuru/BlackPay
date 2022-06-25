@@ -63,15 +63,16 @@ const Index = (props) => {
 					<br />
 
 					{/* Code Box */}
-					<div className="d-flex justify-content-between">
+					<div className="d-flex justify-content-between text-center">
 						<div className="bg-dark text-light m-2 p-2 flex-fill"
 							style={{ borderRadius: "20px" }}>
 							<span className="display-4">{token}</span>
 							<h6>Code</h6>
 						</div>
 					</div>
+
 					{/* Hours and Bill FlexBox */}
-					<div className="d-flex justify-content-between">
+					<div className="d-flex justify-content-between text-center">
 						<div className="bg-primary text-light m-2 p-2 flex-fill"
 							style={{ borderRadius: "20px" }}>
 							<span className="display-4">{timetaken}</span>
@@ -83,6 +84,7 @@ const Index = (props) => {
 							<h6>Bill</h6>
 						</div>
 					</div>
+					
 					{/* Pay Button */}
 					<div className="mt-4 p-2">
 						{bill &&

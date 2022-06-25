@@ -54,10 +54,16 @@ const ParkingScanner = (props) => {
 							}
 						}}
 						legacyMode />
-
 					<br />
-					<h6>Scanned code</h6>
-					<p>{token}</p>
+
+					{/* Code Box */}
+					<div className="d-flex justify-content-between text-center">
+						<div className="bg-dark text-light m-2 p-2 flex-fill"
+							style={{ borderRadius: "20px" }}>
+							<span className="display-4">{token}</span>
+							<h6>Code</h6>
+						</div>
+					</div>
 				</center>
 			</div>
 			<div className="col-sm-4"></div>

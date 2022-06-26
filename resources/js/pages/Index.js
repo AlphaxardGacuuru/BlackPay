@@ -21,12 +21,12 @@ const Index = (props) => {
 		}, 1000)
 	}
 
-	const getBill = (token) => {
+	const getCharge = (token) => {
 		axios.get('sanctum/csrf-cookie').then(() => {
 			axios.get(`api/tokens/${token}`)
 				.then((res) => {
 					setTimetaken(res.data['timetaken'])
-					props.setBill('KES ' + res.data['bill'])
+					props.setCharge(res.data['charge'])
 					scrollToPayButton()
 				})
 				.catch((err) => props.setErrors([err.data]))
@@ -51,7 +51,7 @@ const Index = (props) => {
 							onResult={(result, error) => {
 								if (!!result) {
 									setToken(result?.text);
-									getBill(result?.text)
+									getCharge(result?.text)
 								}
 
 								if (!!error) {
@@ -71,7 +71,7 @@ const Index = (props) => {
 						</div>
 					</div>
 
-					{/* Hours and Bill FlexBox */}
+					{/* Hours and Charge FlexBox */}
 					<div className="d-flex justify-content-between text-center">
 						<div className="bg-primary text-light m-2 p-2 flex-fill"
 							style={{ borderRadius: "20px" }}>
@@ -80,14 +80,14 @@ const Index = (props) => {
 						</div>
 						<div className="bg-success text-light m-2 p-2 flex-fill"
 							style={{ borderRadius: "20px" }}>
-							<span className="display-4">{props.bill}</span>
-							<h6>Bill</h6>
+							<span className="display-4">{props.charge && "KES "}{props.charge}</span>
+							<h6>Charge</h6>
 						</div>
 					</div>
 
 					{/* Pay Button */}
 					<div className="mt-4 p-2">
-						{props.bill &&
+						{props.charge &&
 							<Link
 								to="/pay"
 								className="w-100 btn btn-outline-success"

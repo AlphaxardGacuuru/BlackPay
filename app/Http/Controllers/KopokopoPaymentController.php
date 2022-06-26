@@ -113,7 +113,7 @@ class KopokopoPaymentController extends Controller
             'firstName' => $firstname,
             'lastName' => $lastname,
             'phoneNumber' => $betterPhone,
-            'amount' => 100,
+            'amount' => $amount,
             'currency' => 'KES',
             'email' => "alphaxardgacuuru47@gmail.com",
             'callbackUrl' => 'https://pay.black.co.ke/api/kopokopo',

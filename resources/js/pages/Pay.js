@@ -30,7 +30,7 @@ const Pay = (props) => {
 				<div className="col-sm-4"></div>
 				<div className="col-sm-4 text-center">
 					<h5 className="mt-4">Once you click the button below a pop up will appear on your phone asking you to pay</h5>
-					<h4 className="text-success">KES {props.bill}</h4>
+					<h4 className="text-success">KES {props.charge}</h4>
 					<h5>to</h5>
 					<h4 style={{ color: "dodgerblue" }}>Kopokopo</h4>
 					<br />
@@ -43,7 +43,7 @@ const Pay = (props) => {
 							e.preventDefault()
 							setBottomMenu("menu-open")
 							// onPay()
-							STKPush(props.bill)
+							STKPush(props.charge)
 						}} />
 				</div>
 				<div className="col-sm-4"></div>

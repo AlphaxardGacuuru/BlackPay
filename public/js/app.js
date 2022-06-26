@@ -70480,10 +70480,10 @@ function App() {
       errors = _useState8[0],
       setErrors = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(100),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState10 = _slicedToArray(_useState9, 2),
-      bill = _useState10[0],
-      setBill = _useState10[1]; // Reset Messages and Errors to null after 3 seconds
+      charge = _useState10[0],
+      setCharge = _useState10[1]; // Reset Messages and Errors to null after 3 seconds
 
 
   if (errors.length > 0 || messages.length > 0) {
@@ -70564,7 +70564,7 @@ function App() {
     url: url,
     auth: auth,
     setAuth: setAuth
-  }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "bill", bill), _defineProperty(_GLOBAL_STATE, "setBill", setBill), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
+  }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "charge", charge), _defineProperty(_GLOBAL_STATE, "setCharge", setCharge), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_4__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/login",
     exact: true,
@@ -71522,11 +71522,11 @@ var Index = function Index(props) {
     }, 1000);
   };
 
-  var getBill = function getBill(token) {
+  var getCharge = function getCharge(token) {
     axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('sanctum/csrf-cookie').then(function () {
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/tokens/".concat(token)).then(function (res) {
         setTimetaken(res.data['timetaken']);
-        props.setBill('KES ' + res.data['bill']);
+        props.setCharge(res.data['charge']);
         scrollToPayButton();
       })["catch"](function (err) {
         return props.setErrors([err.data]);
@@ -71557,7 +71557,7 @@ var Index = function Index(props) {
     onResult: function onResult(result, error) {
       if (!!result) {
         setToken(result === null || result === void 0 ? void 0 : result.text);
-        getBill(result === null || result === void 0 ? void 0 : result.text);
+        getCharge(result === null || result === void 0 ? void 0 : result.text);
       }
 
       if (!!error) {// console.info(error);
@@ -71589,9 +71589,9 @@ var Index = function Index(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "display-4"
-  }, props.bill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Bill"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.charge && "KES ", props.charge), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Charge"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-4 p-2"
-  }, props.bill && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, props.charge && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/pay",
     className: "w-100 btn btn-outline-success",
     style: {
@@ -71773,7 +71773,7 @@ var Pay = function Pay(props) {
     className: "mt-4"
   }, "Once you click the button below a pop up will appear on your phone asking you to pay"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "text-success"
-  }, "KES ", props.bill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+  }, "KES ", props.charge), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     style: {
       color: "dodgerblue"
     }
@@ -71788,7 +71788,7 @@ var Pay = function Pay(props) {
       e.preventDefault();
       setBottomMenu("menu-open"); // onPay()
 
-      STKPush(props.bill);
+      STKPush(props.charge);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"

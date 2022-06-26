@@ -56,7 +56,7 @@ function App() {
 		})
 	const [messages, setMessages] = useState([])
 	const [errors, setErrors] = useState([])
-	const [bill, setBill] = useState(100)
+	const [charge, setCharge] = useState()
 
 	// Reset Messages and Errors to null after 3 seconds
 	if (errors.length > 0 || messages.length > 0) {
@@ -127,7 +127,7 @@ function App() {
 		auth, setAuth,
 		messages, setMessages,
 		errors, setErrors,
-		bill, setBill,
+		charge, setCharge,
 		// PWA
 		btnAdd,
 		downloadLink, setDownloadLink,

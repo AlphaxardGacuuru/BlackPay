@@ -55,9 +55,9 @@ class TokenController extends Controller
 
         $timetaken = Carbon::parse($in)->diffInHours($now);
 
-        $bill = $timetaken * 50;
+        $charge = $timetaken * 50;
 
-        return response(['bill' => $bill, 'timetaken' => $timetaken], 200);
+        return response(['charge' => $charge, 'timetaken' => $timetaken], 200);
     }
 
     /**

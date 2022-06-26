@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import Btn from '../components/Btn'
 
@@ -9,7 +10,6 @@ const Index = (props) => {
 
 	const [token, setToken] = useState()
 	const [timetaken, setTimetaken] = useState()
-	const [bill, setBill] = useState()
 
 	// navigator.mediaDevices.getUserMedia({ video: true, audio: false })
 	// .then((res) => console.log(res))
@@ -26,7 +26,7 @@ const Index = (props) => {
 			axios.get(`api/tokens/${token}`)
 				.then((res) => {
 					setTimetaken(res.data['timetaken'])
-					setBill('KES ' + res.data['bill'])
+					props.setBill('KES ' + res.data['bill'])
 					scrollToPayButton()
 				})
 				.catch((err) => props.setErrors([err.data]))
@@ -80,15 +80,20 @@ const Index = (props) => {
 						</div>
 						<div className="bg-success text-light m-2 p-2 flex-fill"
 							style={{ borderRadius: "20px" }}>
-							<span className="display-4">{bill}</span>
+							<span className="display-4">{props.bill}</span>
 							<h6>Bill</h6>
 						</div>
 					</div>
 
 					{/* Pay Button */}
 					<div className="mt-4 p-2">
-						{bill &&
-							<Btn btnClass="w-100 btn btn-outline-success" text="pay" />}
+						{props.bill &&
+							<Link
+								to="/pay"
+								className="w-100 btn btn-outline-success"
+								style={{ borderRadius: "20px", textTransform: "uppercase" }}>
+								proceed to payment
+							</Link>}
 					</div>
 				</div>
 			</div>

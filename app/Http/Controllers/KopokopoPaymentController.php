@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\KopokopoPayment;
 use Illuminate\Http\Request;
+use Kopokopo\SDK\K2;
 
 class KopokopoPaymentController extends Controller
 {
@@ -67,14 +68,17 @@ class KopokopoPaymentController extends Controller
     public function update(Request $request, $amount)
     {
         // Get phone in better format
-        $betterPhone = substr_replace(auth()->user()->phone, '+254', 0, -9);
+        // $betterPhone = substr_replace(auth()->user()->phone, '+254', 0, -9);
+        $betterPhone = substr_replace("0700364446", '+254', 0, -9);
 		
         // Get first and last name
-        $parts = explode(" ", auth()->user()->name);
+        // $parts = explode(" ", auth()->user()->name);
 
-        $lastname = array_pop($parts);
+        // $lastname = array_pop($parts);
+        $lastname = "Gacuuru";
 
-        $firstname = implode(" ", $parts);
+        // $firstname = implode(" ", $parts);
+        $firstname = "Al";
 
         // Do not hard code these values
         $options = [
@@ -109,10 +113,10 @@ class KopokopoPaymentController extends Controller
             'firstName' => $firstname,
             'lastName' => $lastname,
             'phoneNumber' => $betterPhone,
-            'amount' => $amount,
+            'amount' => 100,
             'currency' => 'KES',
-            'email' => auth()->user()->email,
-            'callbackUrl' => 'https://music.black.co.ke/api/kopokopo',
+            'email' => "alphaxardgacuuru47@gmail.com",
+            'callbackUrl' => 'https://pay.black.co.ke/api/kopokopo',
             'accessToken' => $data['accessToken'],
         ]);
 

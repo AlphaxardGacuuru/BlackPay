@@ -70397,8 +70397,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_Register__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../auth/Register */ "./resources/js/auth/Register.js");
 /* harmony import */ var _pages_Index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../pages/Index */ "./resources/js/pages/Index.js");
 /* harmony import */ var _pages_ParkingScanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../pages/ParkingScanner */ "./resources/js/pages/ParkingScanner.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _pages_Pay__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../pages/Pay */ "./resources/js/pages/Pay.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_14__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -70426,11 +70429,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 Object.keys(__webpack_require__.c);
 
 function App() {
+  var _GLOBAL_STATE;
+
   // console.log(process.env.MIX_APP_URL)
   var url = window.location.href.match(/https/) ? 'https://pay.black.co.ke' : 'http://localhost:8002';
   axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.baseURL = url; // Function for checking local storage
@@ -70458,7 +70464,7 @@ function App() {
     "name": "Guest",
     "email": "guest@gmail.com",
     "pp": "/storage/img/male_avatar.png",
-    "account_type": "normal"
+    "phone": "0700364446"
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       auth = _useState4[0],
@@ -70472,7 +70478,12 @@ function App() {
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState8 = _slicedToArray(_useState7, 2),
       errors = _useState8[0],
-      setErrors = _useState8[1]; // Reset Messages and Errors to null after 3 seconds
+      setErrors = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(100),
+      _useState10 = _slicedToArray(_useState9, 2),
+      bill = _useState10[0],
+      setBill = _useState10[1]; // Reset Messages and Errors to null after 3 seconds
 
 
   if (errors.length > 0 || messages.length > 0) {
@@ -70513,15 +70524,15 @@ function App() {
   var deferredPrompt;
   var btnAdd = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState10 = _slicedToArray(_useState9, 2),
-      downloadLink = _useState10[0],
-      setDownloadLink = _useState10[1];
-
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState12 = _slicedToArray(_useState11, 2),
-      downloadLinkText = _useState12[0],
-      setDownloadLinkText = _useState12[1]; // Listen to the install prompt
+      downloadLink = _useState12[0],
+      setDownloadLink = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState14 = _slicedToArray(_useState13, 2),
+      downloadLinkText = _useState14[0],
+      setDownloadLinkText = _useState14[1]; // Listen to the install prompt
 
 
   window.addEventListener('beforeinstallprompt', function (e) {
@@ -70545,25 +70556,15 @@ function App() {
       });
     });
   });
-  var GLOBAL_STATE = {
+  var GLOBAL_STATE = (_GLOBAL_STATE = {
     getLocalStorage: getLocalStorage,
     setLocalStorage: setLocalStorage,
     login: login,
     setLogin: setLogin,
     url: url,
     auth: auth,
-    setAuth: setAuth,
-    messages: messages,
-    setMessages: setMessages,
-    errors: errors,
-    setErrors: setErrors,
-    // PWA
-    btnAdd: btnAdd,
-    downloadLink: downloadLink,
-    setDownloadLink: setDownloadLink,
-    downloadLinkText: downloadLinkText,
-    setDownloadLinkText: setDownloadLinkText
-  };
+    setAuth: setAuth
+  }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "bill", bill), _defineProperty(_GLOBAL_STATE, "setBill", setBill), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_4__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/login",
     exact: true,
@@ -70587,6 +70588,12 @@ function App() {
     exact: true,
     render: function render(props) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_ParkingScanner__WEBPACK_IMPORTED_MODULE_12__["default"], GLOBAL_STATE);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/pay",
+    exact: true,
+    render: function render(props) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_Pay__WEBPACK_IMPORTED_MODULE_13__["default"], GLOBAL_STATE);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Messages__WEBPACK_IMPORTED_MODULE_6__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BottomNav__WEBPACK_IMPORTED_MODULE_5__["default"], GLOBAL_STATE));
 }
@@ -71468,10 +71475,11 @@ var TopNavLinks = function TopNavLinks(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
-/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
+/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71489,6 +71497,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Index = function Index(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71498,12 +71507,7 @@ var Index = function Index(props) {
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState4 = _slicedToArray(_useState3, 2),
       timetaken = _useState4[0],
-      setTimetaken = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      bill = _useState6[0],
-      setBill = _useState6[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      setTimetaken = _useState4[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
   // .then((res) => console.log(res))
   // .catch((err) => console.log(err))
 
@@ -71519,10 +71523,10 @@ var Index = function Index(props) {
   };
 
   var getBill = function getBill(token) {
-    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('sanctum/csrf-cookie').then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("api/tokens/".concat(token)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('sanctum/csrf-cookie').then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/tokens/".concat(token)).then(function (res) {
         setTimetaken(res.data['timetaken']);
-        setBill('KES ' + res.data['bill']);
+        props.setBill('KES ' + res.data['bill']);
         scrollToPayButton();
       })["catch"](function (err) {
         return props.setErrors([err.data]);
@@ -71540,7 +71544,7 @@ var Index = function Index(props) {
     style: {
       borderRadius: "30px"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Scan QR Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_2__["QrReader"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Scan QR Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_3__["QrReader"], {
     constraints: {
       facingMode: 'environment'
     },
@@ -71585,12 +71589,16 @@ var Index = function Index(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "display-4"
-  }, bill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Bill"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.bill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Bill"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-4 p-2"
-  }, bill && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    btnClass: "w-100 btn btn-outline-success",
-    text: "pay"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.bill && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/pay",
+    className: "w-100 btn btn-outline-success",
+    style: {
+      borderRadius: "20px",
+      textTransform: "uppercase"
+    }
+  }, "proceed to payment")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
   }));
 };
@@ -71699,6 +71707,129 @@ var ParkingScanner = function ParkingScanner(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ParkingScanner);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Pay.js":
+/*!***********************************!*\
+  !*** ./resources/js/pages/Pay.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var Pay = function Pay(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      bottomMenu = _useState2[0],
+      setBottomMenu = _useState2[1]; // Send STKPush
+
+
+  var STKPush = function STKPush(amount) {
+    axios.get('sanctum/csrf-cookie').then(function () {
+      axios.put("".concat(props.url, "/api/kopokopo/").concat(amount)).then(function (res) {
+        return props.setMessages([res.data]);
+      })["catch"](function (err) {
+        var resErrors = err.response.data.errors;
+        var resError;
+        var newError = [];
+
+        for (resError in resErrors) {
+          newError.push(resErrors[resError]);
+        }
+
+        newError.push(err.response.data.message);
+        props.setErrors(newError);
+      });
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "mt-4"
+  }, "Once you click the button below a pop up will appear on your phone asking you to pay"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "text-success"
+  }, "KES ", props.bill), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    style: {
+      color: "dodgerblue"
+    }
+  }, "Kopokopo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    btnStyle: {
+      borderRadius: "20px",
+      textTransform: "uppercase",
+      width: "80%"
+    },
+    text: "pay with mpesa",
+    onClick: function onClick(e) {
+      e.preventDefault();
+      setBottomMenu("menu-open"); // onPay()
+
+      STKPush(props.bill);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: bottomMenu
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bottomMenu",
+    style: {
+      borderRadius: "20px"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex align-items-center justify-content-between mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "logo-area p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "Payment")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "closeIcon p-2 float-right",
+    onClick: function onClick() {
+      setBottomMenu("");
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "40",
+    height: "40",
+    fill: "currentColor",
+    className: "bi bi-x",
+    viewBox: "0 0 16 16"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Request was sent to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      color: "dodgerblue"
+    }
+  }, props.auth.phone)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Checking payment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "sonar-load",
+    className: "mt-4 mb-4"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Pay);
 
 /***/ }),
 

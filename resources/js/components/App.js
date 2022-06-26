@@ -14,6 +14,7 @@ import Register from '../auth/Register'
 
 import Index from '../pages/Index'
 import ParkingScanner from '../pages/ParkingScanner'
+import Pay from '../pages/Pay';
 
 import { random } from 'lodash';
 require('lodash')
@@ -51,10 +52,11 @@ function App() {
 			"name": "Guest",
 			"email": "guest@gmail.com",
 			"pp": "/storage/img/male_avatar.png",
-			"account_type": "normal"
+			"phone": "0700364446"
 		})
 	const [messages, setMessages] = useState([])
 	const [errors, setErrors] = useState([])
+	const [bill, setBill] = useState(100)
 
 	// Reset Messages and Errors to null after 3 seconds
 	if (errors.length > 0 || messages.length > 0) {
@@ -122,8 +124,10 @@ function App() {
 		login, setLogin,
 		url,
 		auth, setAuth,
+		auth, setAuth,
 		messages, setMessages,
 		errors, setErrors,
+		bill, setBill,
 		// PWA
 		btnAdd,
 		downloadLink, setDownloadLink,
@@ -140,6 +144,7 @@ function App() {
 
 			<Route path="/" exact render={(props) => (<Index {...GLOBAL_STATE} />)} />
 			<Route path="/parking-scanner" exact render={(props) => (<ParkingScanner {...GLOBAL_STATE} />)} />
+			<Route path="/pay" exact render={(props) => (<Pay {...GLOBAL_STATE} />)} />
 
 			<Messages {...GLOBAL_STATE} />
 			<BottomNav {...GLOBAL_STATE} />

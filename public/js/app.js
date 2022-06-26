@@ -71715,7 +71715,9 @@ var ParkingScanner = function ParkingScanner(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71731,7 +71733,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Pay = function Pay(props) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = url;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       bottomMenu = _useState2[0],
@@ -71739,8 +71744,8 @@ var Pay = function Pay(props) {
 
 
   var STKPush = function STKPush(amount) {
-    axios.get('sanctum/csrf-cookie').then(function () {
-      axios.put("".concat(props.url, "/api/kopokopo/").concat(amount)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('sanctum/csrf-cookie').then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(props.url, "/api/kopokopo/").concat(amount)).then(function (res) {
         return props.setMessages([res.data]);
       })["catch"](function (err) {
         var resErrors = err.response.data.errors;
@@ -71771,7 +71776,7 @@ var Pay = function Pay(props) {
     style: {
       color: "dodgerblue"
     }
-  }, "Kopokopo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, "Kopokopo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_2__["default"], {
     btnStyle: {
       borderRadius: "20px",
       textTransform: "uppercase",

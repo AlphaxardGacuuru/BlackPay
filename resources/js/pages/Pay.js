@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 
 import Btn from '../components/Btn'
 
 const Pay = (props) => {
+
+	axios.defaults.baseURL = url
 
 	const [bottomMenu, setBottomMenu] = useState()
 

@@ -71735,7 +71735,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Pay = function Pay(props) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = url;
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = props.url;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),

@@ -5,7 +5,7 @@ import Btn from '../components/Btn'
 
 const Pay = (props) => {
 
-	axios.defaults.baseURL = url
+	axios.defaults.baseURL = props.url
 
 	const [bottomMenu, setBottomMenu] = useState()
 

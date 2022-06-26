@@ -1412,6 +1412,7 @@ html, body {
     text-align: center;
 	padding: 10px 10px;
 	margin: 2%;
+	border-radius: 20px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;

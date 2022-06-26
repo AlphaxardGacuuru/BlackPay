@@ -51,7 +51,7 @@ const Pay = (props) => {
 
 			{/* Sliding Bottom Nav */}
 			<div className={bottomMenu}>
-				<div className="bottomMenu" style={{ borderRadius: "20px" }}>
+				<div className="bottomMenu">
 					<div className="d-flex align-items-center justify-content-between mb-3">
 						{/* <!-- Logo Area --> */}
 						<div className="logo-area p-2">

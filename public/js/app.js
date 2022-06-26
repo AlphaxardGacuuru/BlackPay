@@ -71515,7 +71515,7 @@ var Index = function Index(props) {
   var scrollToPayButton = function scrollToPayButton() {
     setTimeout(function () {
       window.scrollBy({
-        top: 200,
+        top: 300,
         right: 0,
         behavior: "smooth"
       });

@@ -17,7 +17,7 @@ const Index = (props) => {
 
 	const scrollToPayButton = () => {
 		setTimeout(() => {
-			window.scrollBy({ top: 200, right: 0, behavior: "smooth" })
+			window.scrollBy({ top: 300, right: 0, behavior: "smooth" })
 		}, 1000)
 	}
 

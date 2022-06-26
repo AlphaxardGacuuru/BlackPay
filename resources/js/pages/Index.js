@@ -15,19 +15,13 @@ const Index = (props) => {
 	// .then((res) => console.log(res))
 	// .catch((err) => console.log(err))
 
-	const scrollToPayButton = () => {
-		setTimeout(() => {
-			window.scrollBy({ top: 300, right: 0, behavior: "smooth" })
-		}, 1000)
-	}
-
 	const getCharge = (token) => {
 		axios.get('sanctum/csrf-cookie').then(() => {
 			axios.get(`api/tokens/${token}`)
 				.then((res) => {
 					setTimetaken(res.data['timetaken'])
 					props.setCharge(res.data['charge'])
-					scrollToPayButton()
+					window.scrollBy({ top: 300, right: 0, behavior: "smooth" })
 				})
 				.catch((err) => props.setErrors([err.data]))
 		})

@@ -71512,22 +71512,16 @@ var Index = function Index(props) {
   // .catch((err) => console.log(err))
 
 
-  var scrollToPayButton = function scrollToPayButton() {
-    setTimeout(function () {
-      window.scrollBy({
-        top: 300,
-        right: 0,
-        behavior: "smooth"
-      });
-    }, 1000);
-  };
-
   var getCharge = function getCharge(token) {
     axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('sanctum/csrf-cookie').then(function () {
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/tokens/".concat(token)).then(function (res) {
         setTimetaken(res.data['timetaken']);
         props.setCharge(res.data['charge']);
-        scrollToPayButton();
+        window.scrollBy({
+          top: 300,
+          right: 0,
+          behavior: "smooth"
+        });
       })["catch"](function (err) {
         return props.setErrors([err.data]);
       });

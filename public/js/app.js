@@ -71812,7 +71812,8 @@ var Pay = function Pay(props) {
     onClick: function onClick(e) {
       e.preventDefault();
       setBottomMenu("menu-open");
-      onPay(); // STKPush(props.charge)
+      onPay();
+      STKPush(props.charge);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"

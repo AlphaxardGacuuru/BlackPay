@@ -70480,12 +70480,12 @@ function App() {
       errors = _useState8[0],
       setErrors = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(100),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState10 = _slicedToArray(_useState9, 2),
       charge = _useState10[0],
       setCharge = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('y3rb'),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState12 = _slicedToArray(_useState11, 2),
       token = _useState12[0],
       setToken = _useState12[1]; // Reset Messages and Errors to null after 3 seconds

@@ -56,8 +56,8 @@ function App() {
 		})
 	const [messages, setMessages] = useState([])
 	const [errors, setErrors] = useState([])
-	const [charge, setCharge] = useState(100)
-	const [token, setToken] = useState('y3rb')
+	const [charge, setCharge] = useState()
+	const [token, setToken] = useState()
 
 	// Reset Messages and Errors to null after 3 seconds
 	if (errors.length > 0 || messages.length > 0) {

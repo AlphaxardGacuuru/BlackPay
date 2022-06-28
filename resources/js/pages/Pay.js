@@ -23,6 +23,7 @@ const Pay = (props) => {
 					}
 					newError.push(err.response.data.message)
 					props.setErrors(newError)
+					console.log(err.response)
 				})
 		})
 	}
@@ -34,7 +35,10 @@ const Pay = (props) => {
 				amount: props.charge
 			})
 				.then((res) => props.setMessages([res.data]))
-				.catch((err) => props.setErrors([err.response.data.message]))
+				.catch((err) => {
+					props.setErrors([err.response.data.message])					
+					console.log(err.response)
+				})
 		})
 	}
 

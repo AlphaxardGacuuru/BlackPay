@@ -71771,6 +71771,7 @@ var Pay = function Pay(props) {
 
         newError.push(err.response.data.message);
         props.setErrors(newError);
+        console.log(err.response);
       });
     });
   };
@@ -71783,7 +71784,8 @@ var Pay = function Pay(props) {
       }).then(function (res) {
         return props.setMessages([res.data]);
       })["catch"](function (err) {
-        return props.setErrors([err.response.data.message]);
+        props.setErrors([err.response.data.message]);
+        console.log(err.response);
       });
     });
   };

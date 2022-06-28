@@ -70480,10 +70480,15 @@ function App() {
       errors = _useState8[0],
       setErrors = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(100),
       _useState10 = _slicedToArray(_useState9, 2),
       charge = _useState10[0],
-      setCharge = _useState10[1]; // Reset Messages and Errors to null after 3 seconds
+      setCharge = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('y3rb'),
+      _useState12 = _slicedToArray(_useState11, 2),
+      token = _useState12[0],
+      setToken = _useState12[1]; // Reset Messages and Errors to null after 3 seconds
 
 
   if (errors.length > 0 || messages.length > 0) {
@@ -70524,15 +70529,15 @@ function App() {
   var deferredPrompt;
   var btnAdd = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState12 = _slicedToArray(_useState11, 2),
-      downloadLink = _useState12[0],
-      setDownloadLink = _useState12[1];
-
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState14 = _slicedToArray(_useState13, 2),
-      downloadLinkText = _useState14[0],
-      setDownloadLinkText = _useState14[1]; // Listen to the install prompt
+      downloadLink = _useState14[0],
+      setDownloadLink = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState16 = _slicedToArray(_useState15, 2),
+      downloadLinkText = _useState16[0],
+      setDownloadLinkText = _useState16[1]; // Listen to the install prompt
 
 
   window.addEventListener('beforeinstallprompt', function (e) {
@@ -70564,7 +70569,7 @@ function App() {
     url: url,
     auth: auth,
     setAuth: setAuth
-  }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "charge", charge), _defineProperty(_GLOBAL_STATE, "setCharge", setCharge), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
+  }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "charge", charge), _defineProperty(_GLOBAL_STATE, "setCharge", setCharge), _defineProperty(_GLOBAL_STATE, "token", token), _defineProperty(_GLOBAL_STATE, "setToken", setToken), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_4__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/login",
     exact: true,
@@ -70804,14 +70809,20 @@ var Messages = function Messages(_ref) {
   }, messages.map(function (message, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: key,
-      className: "bg-success p-2 mt-2"
+      className: "bg-success p-2 mt-2",
+      style: {
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
+        transition: "0.3s"
+      }
     }, message);
   }), errors.map(function (error, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: key,
       className: "p-2 mt-2",
       style: {
-        backgroundColor: "#232323"
+        backgroundColor: "#232323",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
+        transition: "0.3s"
       }
     }, error);
   })));
@@ -71501,13 +71512,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Index = function Index(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
-      token = _useState2[0],
-      setToken = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState4 = _slicedToArray(_useState3, 2),
-      timetaken = _useState4[0],
-      setTimetaken = _useState4[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      timetaken = _useState2[0],
+      setTimetaken = _useState2[1]; // navigator.mediaDevices.getUserMedia({ video: true, audio: false })
   // .then((res) => console.log(res))
   // .catch((err) => console.log(err))
 
@@ -71516,7 +71522,8 @@ var Index = function Index(props) {
     axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('sanctum/csrf-cookie').then(function () {
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("api/tokens/".concat(token)).then(function (res) {
         setTimetaken(res.data['timetaken']);
-        props.setCharge(res.data['charge']);
+        props.setCharge(res.data['charge']); // Scroll downwards
+
         window.scrollBy({
           top: 300,
           right: 0,
@@ -71550,7 +71557,7 @@ var Index = function Index(props) {
     className: "p-3",
     onResult: function onResult(result, error) {
       if (!!result) {
-        setToken(result === null || result === void 0 ? void 0 : result.text);
+        props.setToken(result === null || result === void 0 ? void 0 : result.text);
         getCharge(result === null || result === void 0 ? void 0 : result.text);
       }
 
@@ -71567,7 +71574,7 @@ var Index = function Index(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "display-4"
-  }, token), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Code"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.token), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Code"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-between text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-primary text-light m-2 p-2 flex-fill",
@@ -71641,10 +71648,16 @@ var ParkingScanner = function ParkingScanner(props) {
   var RegisterToken = function RegisterToken(token) {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/sanctum/csrf-cookie').then(function () {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/tokens", {
-        token: token
+        token: token,
+        type: "in"
       }).then(function (res) {
-        console.log(res.data);
-        props.setMessages([res.data]);
+        props.setMessages([res.data]); // Scroll downwards
+
+        window.scrollBy({
+          top: 100,
+          right: 0,
+          behavior: "smooth"
+        });
       })["catch"](function (err) {
         var resErrors = err.response.data.errors;
         var resError;
@@ -71762,6 +71775,19 @@ var Pay = function Pay(props) {
     });
   };
 
+  var onPay = function onPay() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('sanctum/csrf-cookie').then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/paid-tokens', {
+        token: props.token,
+        amount: props.charge
+      }).then(function (res) {
+        return props.setMessages([res.data]);
+      })["catch"](function (err) {
+        return props.setErrors([err.response.data.message]);
+      });
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71785,9 +71811,8 @@ var Pay = function Pay(props) {
     text: "pay with mpesa",
     onClick: function onClick(e) {
       e.preventDefault();
-      setBottomMenu("menu-open"); // onPay()
-
-      STKPush(props.charge);
+      setBottomMenu("menu-open");
+      onPay(); // STKPush(props.charge)
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"

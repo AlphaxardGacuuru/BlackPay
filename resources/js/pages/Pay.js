@@ -27,6 +27,17 @@ const Pay = (props) => {
 		})
 	}
 
+	const onPay = () => {
+		axios.get('sanctum/csrf-cookie').then(() => {
+			axios.post('api/paid-tokens', {
+				token: props.token,
+				amount: props.charge
+			})
+				.then((res) => props.setMessages([res.data]))
+				.catch((err) => props.setErrors([err.response.data.message]))
+		})
+	}
+
 	return (
 		<div>
 			<div className="row">
@@ -45,8 +56,8 @@ const Pay = (props) => {
 						onClick={(e) => {
 							e.preventDefault()
 							setBottomMenu("menu-open")
-							// onPay()
-							STKPush(props.charge)
+							onPay()
+							// STKPush(props.charge)
 						}} />
 				</div>
 				<div className="col-sm-4"></div>

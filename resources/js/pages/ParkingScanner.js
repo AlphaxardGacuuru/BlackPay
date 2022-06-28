@@ -11,10 +11,16 @@ const ParkingScanner = (props) => {
 	const RegisterToken = (token) => {
 		axios.get('/sanctum/csrf-cookie').then(() => {
 			axios.post(`/api/tokens`, {
-				token: token
+				token: token,
+				type: "in"
 			}).then((res) => {
-				console.log(res.data)
 				props.setMessages([res.data])
+				// Scroll downwards
+				window.scrollBy({
+					top: 100,
+					right: 0,
+					behavior: "smooth"
+				})
 			}).catch((err) => {
 				const resErrors = err.response.data.errors
 				var resError

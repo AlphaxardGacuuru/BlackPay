@@ -8,7 +8,6 @@ import axios from 'axios'
 
 const Index = (props) => {
 
-	const [token, setToken] = useState()
 	const [timetaken, setTimetaken] = useState()
 
 	// navigator.mediaDevices.getUserMedia({ video: true, audio: false })
@@ -21,7 +20,12 @@ const Index = (props) => {
 				.then((res) => {
 					setTimetaken(res.data['timetaken'])
 					props.setCharge(res.data['charge'])
-					window.scrollBy({ top: 300, right: 0, behavior: "smooth" })
+					// Scroll downwards
+					window.scrollBy({
+						top: 300,
+						right: 0,
+						behavior: "smooth"
+					})
 				})
 				.catch((err) => props.setErrors([err.data]))
 		})
@@ -44,7 +48,7 @@ const Index = (props) => {
 							className="p-3"
 							onResult={(result, error) => {
 								if (!!result) {
-									setToken(result?.text);
+									props.setToken(result?.text);
 									getCharge(result?.text)
 								}
 
@@ -60,7 +64,7 @@ const Index = (props) => {
 					<div className="d-flex justify-content-between text-center">
 						<div className="bg-dark text-light m-2 p-2 flex-fill"
 							style={{ borderRadius: "20px" }}>
-							<span className="display-4">{token}</span>
+							<span className="display-4">{props.token}</span>
 							<h6>Code</h6>
 						</div>
 					</div>

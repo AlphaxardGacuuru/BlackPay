@@ -56,7 +56,8 @@ function App() {
 		})
 	const [messages, setMessages] = useState([])
 	const [errors, setErrors] = useState([])
-	const [charge, setCharge] = useState()
+	const [charge, setCharge] = useState(100)
+	const [token, setToken] = useState('y3rb')
 
 	// Reset Messages and Errors to null after 3 seconds
 	if (errors.length > 0 || messages.length > 0) {
@@ -128,6 +129,7 @@ function App() {
 		messages, setMessages,
 		errors, setErrors,
 		charge, setCharge,
+		token, setToken,
 		// PWA
 		btnAdd,
 		downloadLink, setDownloadLink,

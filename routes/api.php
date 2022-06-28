@@ -19,6 +19,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::apiResource('tokens', 'TokenController')->parameters(['tokens' => 'tokens']);
 Route::apiResource('kopokopo', 'KopokopoPaymentController');
+Route::apiResource('paid-tokens', 'PaidTokenController');
 
 // Generate QR Codes
 Route::get('qr-code-generator', function () {

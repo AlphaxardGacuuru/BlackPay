@@ -33,6 +33,7 @@ class TokenController extends Controller
         $token = new Token;
         $token->token = $request->input("token");
         $token->user_id = 1;
+        $token->type = $request->input("type");
         $token->save();
 
         return response("Token Saved", 200);
@@ -46,18 +47,26 @@ class TokenController extends Controller
      */
     public function show($token)
     {
-        $in = Token::where('token', $token)
+        $token = Token::where('token', $token)
             ->orderBy('id', 'desc')
-            ->first()
-            ->created_at;
+            ->first();
 
-        $now = Carbon::now();
+        $in = $token->created_at;
 
-        $timetaken = Carbon::parse($in)->diffInHours($now);
+        // Check if type is in
+        if ($token->type == "in") {
 
-        $charge = $timetaken * 50;
+            $now = Carbon::now();
 
-        return response(['charge' => $charge, 'timetaken' => $timetaken], 200);
+            $timetaken = Carbon::parse($in)->diffInHours($now);
+
+            $charge = $timetaken * 50;
+
+            return response([
+                'charge' => $charge,
+                'timetaken' => $timetaken],
+                200);
+        }
     }
 
     /**

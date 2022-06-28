@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTokensTable extends Migration
+class CreatePaidTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('tokens', function (Blueprint $table) {
+        Schema::create('paid_tokens', function (Blueprint $table) {
             $table->id();
-			$table->string('user_id');
-			$table->string('token');
-			$table->string('type');
+            $table->string("user_id");
+            $table->string("token");
+            $table->string("amount");
+            $table->string("in");
+            $table->string("out");
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tokens');
+        Schema::dropIfExists('paid_tokens');
     }
 }

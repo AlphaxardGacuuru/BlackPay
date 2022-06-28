@@ -36,8 +36,7 @@ const Pay = (props) => {
 			})
 				.then((res) => props.setMessages([res.data]))
 				.catch((err) => {
-					props.setErrors([err.response.data.message])					
-					console.log(err.response)
+					props.setErrors([err.response.data.message])
 				})
 		})
 	}

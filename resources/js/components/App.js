@@ -54,15 +54,15 @@ function App() {
 			"pp": "/storage/img/male_avatar.png",
 			"phone": "0700364446"
 		})
-	const [messages, setMessages] = useState([])
+	const [messages, setMessages] = useState(["Message"])
 	const [errors, setErrors] = useState([])
 	const [charge, setCharge] = useState()
 	const [token, setToken] = useState()
 
 	// Reset Messages and Errors to null after 3 seconds
 	if (errors.length > 0 || messages.length > 0) {
-		setTimeout(() => setErrors([]), 2900);
-		setTimeout(() => setMessages([]), 2900);
+		// setTimeout(() => setErrors([]), 2900);
+		// setTimeout(() => setMessages([]), 2900);
 	}
 
 	// Fetch data once on page load

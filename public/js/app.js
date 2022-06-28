@@ -70470,7 +70470,7 @@ function App() {
       auth = _useState4[0],
       setAuth = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(["Message"]),
       _useState6 = _slicedToArray(_useState5, 2),
       messages = _useState6[0],
       setMessages = _useState6[1];
@@ -70491,13 +70491,8 @@ function App() {
       setToken = _useState12[1]; // Reset Messages and Errors to null after 3 seconds
 
 
-  if (errors.length > 0 || messages.length > 0) {
-    setTimeout(function () {
-      return setErrors([]);
-    }, 2900);
-    setTimeout(function () {
-      return setMessages([]);
-    }, 2900);
+  if (errors.length > 0 || messages.length > 0) {// setTimeout(() => setErrors([]), 2900);
+    // setTimeout(() => setMessages([]), 2900);
   } // Fetch data once on page load
 
 
@@ -70811,7 +70806,7 @@ var Messages = function Messages(_ref) {
       key: key,
       className: "bg-success p-2 mt-2",
       style: {
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
+        boxShadow: "0 4px 8px 0 rgba(56, 193, 114, 0.5)",
         transition: "0.3s"
       }
     }, message);
@@ -71785,7 +71780,6 @@ var Pay = function Pay(props) {
         return props.setMessages([res.data]);
       })["catch"](function (err) {
         props.setErrors([err.response.data.message]);
-        console.log(err.response);
       });
     });
   };

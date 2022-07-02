@@ -9,7 +9,8 @@ const Messages = ({ messages, errors }) => {
 				className={errors.length > 0 || messages.length > 0 ? 'show' : ''}>
 				{/* Message Toast */}
 				{messages.map((message, key) => (
-					<div key={key}
+					<div
+						key={key}
 						className="bg-success p-2 mt-2"
 						style={{
 							boxShadow: "0 4px 8px 0 rgba(56, 193, 114, 0.5)",

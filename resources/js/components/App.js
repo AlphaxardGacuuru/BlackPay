@@ -61,8 +61,8 @@ function App() {
 
 	// Reset Messages and Errors to null after 3 seconds
 	if (errors.length > 0 || messages.length > 0) {
-		// setTimeout(() => setErrors([]), 2900);
-		// setTimeout(() => setMessages([]), 2900);
+		setTimeout(() => setErrors([]), 2900);
+		setTimeout(() => setMessages([]), 2900);
 	}
 
 	// Fetch data once on page load

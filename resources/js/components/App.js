@@ -54,7 +54,7 @@ function App() {
 			"pp": "/storage/img/male_avatar.png",
 			"phone": "0700364446"
 		})
-	const [messages, setMessages] = useState(["No"])
+	const [messages, setMessages] = useState([])
 	const [errors, setErrors] = useState([])
 	const [charge, setCharge] = useState()
 	const [token, setToken] = useState()
@@ -81,8 +81,8 @@ function App() {
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
 				navigator.serviceWorker.register('/sw.js')
-				// .then((reg) => console.log('Service worker registered', reg))
-				// .catch((err) => console.log('Service worker not registered', err));
+				.then((reg) => console.log('Service worker registered', reg))
+				.catch((err) => console.log('Service worker not registered', err));
 			})
 		}
 	}

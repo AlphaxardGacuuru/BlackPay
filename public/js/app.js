@@ -70470,7 +70470,7 @@ function App() {
       auth = _useState4[0],
       setAuth = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(["Message"]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
       messages = _useState6[0],
       setMessages = _useState6[1];
@@ -70491,8 +70491,13 @@ function App() {
       setToken = _useState12[1]; // Reset Messages and Errors to null after 3 seconds
 
 
-  if (errors.length > 0 || messages.length > 0) {// setTimeout(() => setErrors([]), 2900);
-    // setTimeout(() => setMessages([]), 2900);
+  if (errors.length > 0 || messages.length > 0) {
+    setTimeout(function () {
+      return setErrors([]);
+    }, 2900);
+    setTimeout(function () {
+      return setMessages([]);
+    }, 2900);
   } // Fetch data once on page load
 
 
@@ -70511,8 +70516,11 @@ function App() {
   if (window.location.href.match(/https/)) {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js'); // .then((reg) => console.log('Service worker registered', reg))
-        // .catch((err) => console.log('Service worker not registered', err));
+        navigator.serviceWorker.register('/sw.js').then(function (reg) {
+          return console.log('Service worker registered', reg);
+        })["catch"](function (err) {
+          return console.log('Service worker not registered', err);
+        });
       });
     }
   }

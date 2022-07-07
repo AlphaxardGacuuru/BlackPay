@@ -54,7 +54,7 @@ function App() {
 			"pp": "/storage/img/male_avatar.png",
 			"phone": "0700364446"
 		})
-	const [messages, setMessages] = useState([])
+	const [messages, setMessages] = useState(["No"])
 	const [errors, setErrors] = useState([])
 	const [charge, setCharge] = useState()
 	const [token, setToken] = useState()

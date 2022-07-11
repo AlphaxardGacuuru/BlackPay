@@ -69972,12 +69972,12 @@ var LoginPopUp = function LoginPopUp(props) {
     setPhone('07');
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.login && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "preloader"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "preload-content"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "menu-open"
+    className: props.login ? "menu-open" : ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bottomMenu"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70330,7 +70330,7 @@ function App() {
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(localStorage.getItem("auth") ? JSON.parse(localStorage.getItem("auth")) : {
     "name": "Guest",
     "email": "guest@gmail.com",
-    "pp": "/storage/img/male_avatar.png",
+    "profile_picture": "/storage/img/male_avatar.png",
     "phone": "0700364446"
   }),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -70434,7 +70434,7 @@ function App() {
     auth: auth,
     setAuth: setAuth
   }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "charge", charge), _defineProperty(_GLOBAL_STATE, "setCharge", setCharge), _defineProperty(_GLOBAL_STATE, "token", token), _defineProperty(_GLOBAL_STATE, "setToken", setToken), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), login && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_LoginPopUp__WEBPACK_IMPORTED_MODULE_8__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_4__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_LoginPopUp__WEBPACK_IMPORTED_MODULE_8__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_4__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/register/:name/:email/:avatar",
     exact: true,
     render: function render(props) {
@@ -70669,7 +70669,7 @@ var Messages = function Messages(_ref) {
       key: key,
       className: "bg-success p-2 mt-2",
       style: {
-        boxShadow: "0 4px 8px 0 rgba(56, 193, 114, 0.5)",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
         transition: "0.3s"
       }
     }, message);
@@ -71002,7 +71002,7 @@ var TopNav = function TopNav(props) {
     className: "menu-content-area d-flex align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "header-social-area d-flex align-items-center"
-  }, props.auth.email == "guest@gmail.com" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, props.auth.email == "guest@gmail.com" || !props.auth.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "display-4",
     to: "#",
     onClick: function onClick() {
@@ -71636,14 +71636,27 @@ var Pay = function Pay(props) {
 
   var onPay = function onPay() {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('sanctum/csrf-cookie').then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/paid-tokens', {
-        token: props.token,
-        amount: props.charge
-      }).then(function (res) {
-        return props.setMessages([res.data]);
-      })["catch"](function (err) {
-        props.setErrors([err.response.data.message]);
-      });
+      var intervalId = window.setInterval(function () {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/paid-tokens', {
+          token: props.token,
+          amount: props.charge
+        }).then(function (res) {
+          // Check if payment has been recieved
+          if (res.data == "Payment Received") {
+            props.setMessages([res.data]);
+            setBottomMenu();
+            clearInterval(intervalId);
+          } // Stop loop after 30s
+
+
+          setTimeout(function () {
+            clearInterval(intervalId);
+            setBottomMenu();
+          }, 30000);
+        })["catch"](function (err) {
+          props.setErrors([err.response.data.message]);
+        });
+      }, 2000);
     });
   };
 
@@ -71669,13 +71682,12 @@ var Pay = function Pay(props) {
     },
     text: "pay with mpesa",
     onClick: function onClick(e) {
-      if (props.auth.email == "guest@gmail.com") {
+      if (props.auth.email == "guest@gmail.com" || !props.auth) {
         props.setLogin(true);
       } else {
         e.preventDefault();
         setBottomMenu("menu-open");
-        onPay();
-        STKPush(props.charge);
+        onPay(); // STKPush(props.charge)
       }
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -50,7 +50,7 @@ function App() {
 		{
 			"name": "Guest",
 			"email": "guest@gmail.com",
-			"pp": "/storage/img/male_avatar.png",
+			"profile_picture": "/storage/img/male_avatar.png",
 			"phone": "0700364446"
 		})
 	const [messages, setMessages] = useState([])
@@ -136,7 +136,7 @@ function App() {
 	return (
 		<Router>
 			<ScrollToTop />
-			{login && <LoginPopUp {...GLOBAL_STATE} />}
+			<LoginPopUp {...GLOBAL_STATE} />
 
 			<TopNav {...GLOBAL_STATE} />
 

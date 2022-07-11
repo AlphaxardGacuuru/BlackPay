@@ -204,7 +204,8 @@ const TopNav = (props) => {
 									<div className="menu-content-area d-flex align-items-center">
 										{/* <!-- Header Social Area --> */}
 										<div className="header-social-area d-flex align-items-center">
-											{props.auth.email == "guest@gmail.com" ?
+											{props.auth.email == "guest@gmail.com" ||
+												!props.auth.email ?
 												<Link className="display-4"
 													to="#"
 													onClick={() => props.setLogin(true)}>

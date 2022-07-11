@@ -30,14 +30,29 @@ const Pay = (props) => {
 
 	const onPay = () => {
 		axios.get('sanctum/csrf-cookie').then(() => {
-			axios.post('api/paid-tokens', {
-				token: props.token,
-				amount: props.charge
-			})
-				.then((res) => props.setMessages([res.data]))
-				.catch((err) => {
-					props.setErrors([err.response.data.message])
+			var intervalId = window.setInterval(() => {
+				axios.post('api/paid-tokens', {
+					token: props.token,
+					amount: props.charge
 				})
+					.then((res) => {
+						// Check if payment has been recieved
+						if (res.data == "Payment Received") {
+							props.setMessages([res.data])
+							setBottomMenu()
+							clearInterval(intervalId)
+						}
+
+						// Stop loop after 30s
+						setTimeout(() => {
+							clearInterval(intervalId)
+							setBottomMenu()
+						}, 30000)
+					})
+					.catch((err) => {
+						props.setErrors([err.response.data.message])
+					})
+			}, 2000);
 		})
 	}
 
@@ -57,13 +72,13 @@ const Pay = (props) => {
 						btnStyle={{ borderRadius: "20px", textTransform: "uppercase", width: "80%" }}
 						text="pay with mpesa"
 						onClick={(e) => {
-							if (props.auth.email == "guest@gmail.com") {
+							if (props.auth.email == "guest@gmail.com" || !props.auth) {
 								props.setLogin(true)
 							} else {
 								e.preventDefault()
 								setBottomMenu("menu-open")
 								onPay()
-								STKPush(props.charge)
+								// STKPush(props.charge)
 							}
 						}
 						} />

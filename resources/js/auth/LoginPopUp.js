@@ -55,12 +55,14 @@ const LoginPopUp = (props) => {
 
 	return (
 		<>
-			<div id="preloader">
-				<div className="preload-content">
-					{/* <div id="sonar-load"></div> */}
-				</div>
-			</div>
-			<div className="menu-open">
+			{props.login &&
+				<div id="preloader">
+					<div className="preload-content">
+						{/* <div id="sonar-load"></div> */}
+					</div>
+				</div>}
+
+			<div className={props.login ? "menu-open" : ""}>
 				<div className="bottomMenu">
 					<div className="d-flex align-items-center justify-content-between">
 						{/* <!-- Logo Area --> */}

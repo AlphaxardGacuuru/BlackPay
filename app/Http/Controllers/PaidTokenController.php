@@ -6,6 +6,7 @@ use App\KopokopoPayment;
 use App\PaidToken;
 use App\Token;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaidTokenController extends Controller
 {
@@ -16,8 +17,12 @@ class PaidTokenController extends Controller
      */
     public function index()
     {
-        return PaidToken::where('user_id', 1)
-            ->get();
+
+        // Check if user is logged in
+        if (Auth::check()) {
+            return PaidToken::where('user_id', auth()->user()->id)
+                ->get();
+        }
     }
 
     /**
@@ -34,13 +39,13 @@ class PaidTokenController extends Controller
             ->created_at;
 
         // Check if payment has come through
-        $hasPaid = KopokopoPayment::where('sender_phone_number', "0700364446")
+        $hasPaid = KopokopoPayment::where('sender_phone_number', auth()->user()->phone)
             ->where('created_at', '>', $in)
             ->first();
 
         if ($hasPaid) {
             $paidToken = new PaidToken;
-            $paidToken->user_id = 1;
+            $paidToken->user_id = auth()->user()->id;
             $paidToken->token = $request->input('token');
             $paidToken->amount = $request->input('amount');
             $paidToken->in = $in;
@@ -49,7 +54,7 @@ class PaidTokenController extends Controller
 
             return response('Payment Received', 200);
         } else {
-            return response('Payment not recieved', 400);
+            return response('Payment not recieved', 200);
         }
     }
 

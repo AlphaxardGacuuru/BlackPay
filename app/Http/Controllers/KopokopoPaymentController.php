@@ -68,17 +68,14 @@ class KopokopoPaymentController extends Controller
     public function update(Request $request, $amount)
     {
         // Get phone in better format
-        // $betterPhone = substr_replace(auth()->user()->phone, '+254', 0, -9);
-        $betterPhone = substr_replace("0700364446", '+254', 0, -9);
+        $betterPhone = substr_replace(auth()->user()->phone, '+254', 0, -9);
 		
         // Get first and last name
-        // $parts = explode(" ", auth()->user()->name);
+        $parts = explode(" ", auth()->user()->name);
 
-        // $lastname = array_pop($parts);
-        $lastname = "Gacuuru";
+        $lastname = array_pop($parts);
 
-        // $firstname = implode(" ", $parts);
-        $firstname = "Al";
+        $firstname = implode(" ", $parts);
 
         // Do not hard code these values
         $options = [
@@ -115,7 +112,7 @@ class KopokopoPaymentController extends Controller
             'phoneNumber' => $betterPhone,
             'amount' => $amount,
             'currency' => 'KES',
-            'email' => "alphaxardgacuuru47@gmail.com",
+            'email' => auth()->user()->email,
             'callbackUrl' => 'https://pay.black.co.ke/api/kopokopo',
             'accessToken' => $data['accessToken'],
         ]);

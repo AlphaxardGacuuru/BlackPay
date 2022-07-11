@@ -24,7 +24,7 @@ function App() {
 
 	// console.log(process.env.MIX_APP_URL)
 
-	const url = window.location.href.match(/httpss/) ?
+	const url = window.location.href.match(/https/) ?
 		'https://pay.black.co.ke' :
 		'http://localhost:8002'
 

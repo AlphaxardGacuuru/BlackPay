@@ -70307,7 +70307,7 @@ function App() {
   var _GLOBAL_STATE;
 
   // console.log(process.env.MIX_APP_URL)
-  var url = window.location.href.match(/httpss/) ? 'https://pay.black.co.ke' : 'http://localhost:8002';
+  var url = window.location.href.match(/https/) ? 'https://pay.black.co.ke' : 'http://localhost:8002';
   axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.baseURL = url; // Function for checking local storage
 
   var getLocalStorage = function getLocalStorage(state) {

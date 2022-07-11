@@ -108,9 +108,9 @@ const LoginPopUp = (props) => {
 								{/* <FacebookLoginButton
 									className="mt-2 rounded-0"
 									onClick={() => onSocial("facebook")} /> */}
-								<TwitterLoginButton
+								{/* <TwitterLoginButton
 									className="mt-2 rounded-0"
-									onClick={() => onSocial("twitter")} />
+									onClick={() => onSocial("twitter")} /> */}
 								<br />
 
 								<Btn

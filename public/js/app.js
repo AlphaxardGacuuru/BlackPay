@@ -70021,11 +70021,6 @@ var LoginPopUp = function LoginPopUp(props) {
     onClick: function onClick() {
       return onSocial("google");
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_social_login_buttons__WEBPACK_IMPORTED_MODULE_1__["TwitterLoginButton"], {
-    className: "mt-2 rounded-0",
-    onClick: function onClick() {
-      return onSocial("twitter");
-    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_3__["default"], {
     btnClass: "mysonar-btn",
     text: "login with number",

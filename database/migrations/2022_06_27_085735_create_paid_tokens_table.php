@@ -19,7 +19,6 @@ class CreatePaidTokensTable extends Migration
             $table->string("token");
             $table->string("amount");
             $table->string("in");
-            $table->string("out");
             $table->timestamps();
         });
     }

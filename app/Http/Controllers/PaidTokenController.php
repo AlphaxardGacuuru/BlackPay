@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\KopokopoPayment;
 use App\PaidToken;
 use App\Token;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,12 +18,30 @@ class PaidTokenController extends Controller
      */
     public function index()
     {
-
         // Check if user is logged in
         if (Auth::check()) {
-            return PaidToken::where('user_id', auth()->user()->id)
+            $getPaidTokens = PaidToken::where('user_id', auth()->user()->id)
                 ->get();
-        }
+
+            $paidTokens = [];
+
+            foreach ($getPaidTokens as $paidToken) {
+
+                $in = Carbon::parse($paidToken->in)->format("d M Y H:i");
+
+                array_push($paidTokens, [
+                    'id' => $paidToken->id,
+                    'token' => $paidToken->token,
+                    'amount' => $paidToken->amount,
+                    'in' => $in,
+                    'created_at' => $paidToken->created_at->format("d M Y H:i"),
+                ]);
+            }
+
+            return response($paidTokens, 200);
+        } else {
+			return [];
+		}
     }
 
     /**
@@ -49,7 +68,6 @@ class PaidTokenController extends Controller
             $paidToken->token = $request->input('token');
             $paidToken->amount = $request->input('amount');
             $paidToken->in = $in;
-            $paidToken->out = "";
             $paidToken->save();
 
             return response('Payment Received', 200);

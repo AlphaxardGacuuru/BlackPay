@@ -14,6 +14,7 @@ import Register from '../auth/Register'
 import Index from '../pages/Index'
 import ParkingScanner from '../pages/ParkingScanner'
 import Pay from '../pages/Pay';
+import History from '../pages/History'
 
 import { random } from 'lodash';
 require('lodash')
@@ -145,6 +146,7 @@ function App() {
 			<Route path="/" exact render={(props) => (<Index {...GLOBAL_STATE} />)} />
 			<Route path="/parking-scanner" exact render={(props) => (<ParkingScanner {...GLOBAL_STATE} />)} />
 			<Route path="/pay" exact render={(props) => (<Pay {...GLOBAL_STATE} />)} />
+			<Route path="/history" exact render={(props) => (<History {...GLOBAL_STATE} />)} />
 
 			<Messages {...GLOBAL_STATE} />
 			<BottomNav {...GLOBAL_STATE} />

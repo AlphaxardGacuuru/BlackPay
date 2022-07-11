@@ -1,5 +1,5 @@
 // cacheName needs to be changed after any of the assets are changed
-const cacheName = 'BlackPay6';
+const cacheName = 'BlackPay7';
 
 const cacheAssets = [
 	'/js/app.js'
@@ -43,7 +43,7 @@ self.addEventListener('activate', (e) => {
 
 // Fetch event
 self.addEventListener('fetch', (e) => {
-	console.log(e)	
+	console.log("The Fetch Request is : " + e.request.method)	
 	e.respondWith(
 		fetch(e.request)
 			.then((res) => {

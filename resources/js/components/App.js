@@ -9,7 +9,6 @@ import Messages from './Messages'
 import ScrollToTop from "./ScrollToTop"
 
 import LoginPopUp from '../auth/LoginPopUp'
-import Login from '../auth/Login'
 import Register from '../auth/Register'
 
 import Index from '../pages/Index'
@@ -24,7 +23,7 @@ function App() {
 
 	// console.log(process.env.MIX_APP_URL)
 
-	const url = window.location.href.match(/https/) ?
+	const url = window.location.href.match(/httpss/) ?
 		'https://pay.black.co.ke' :
 		'http://localhost:8002'
 
@@ -68,11 +67,9 @@ function App() {
 	// Fetch data once on page load
 	useEffect(() => {
 		axios.get('/api/home')
-			.then((res) => console.log(res.data))
-			.catch((err) => console.log(err))
+			.then((res) => setAuth(res.data))
+		// .catch((err) => console.log(err))
 	}, [])
-
-	console.log("rendered")
 
 	/*
 	*
@@ -81,8 +78,8 @@ function App() {
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {
 				navigator.serviceWorker.register('/sw.js')
-				.then((reg) => console.log('Service worker registered', reg))
-				.catch((err) => console.log('Service worker not registered', err));
+				// .then((reg) => console.log('Service worker registered', reg))
+				// .catch((err) => console.log('Service worker not registered', err));
 			})
 		}
 	}
@@ -139,9 +136,10 @@ function App() {
 	return (
 		<Router>
 			<ScrollToTop />
+			{login && <LoginPopUp {...GLOBAL_STATE} />}
+
 			<TopNav {...GLOBAL_STATE} />
 
-			<Route path="/login" exact render={(props) => (<Login {...GLOBAL_STATE} />)} />
 			<Route path="/register/:name/:email/:avatar" exact render={(props) => (<Register {...GLOBAL_STATE} />)} />
 
 			<Route path="/" exact render={(props) => (<Index {...GLOBAL_STATE} />)} />

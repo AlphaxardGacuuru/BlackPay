@@ -43,9 +43,9 @@ const TopNav = (props) => {
 					// Update Auth
 					props.setAuth({
 						"name": "Guest",
-						"username": "@guest",
-						"pp": "profile-pics/male_avatar.png",
-						"account_type": "normal"
+						"email": "guest@gmail.com",
+						"profile_picture": "/storage/img/male_avatar.png",
+						"phone": "0700364446"
 					})
 				});
 		})
@@ -204,7 +204,7 @@ const TopNav = (props) => {
 									<div className="menu-content-area d-flex align-items-center">
 										{/* <!-- Header Social Area --> */}
 										<div className="header-social-area d-flex align-items-center">
-											{props.auth.email == "uest@gmail.com" ?
+											{props.auth.email == "guest@gmail.com" ?
 												<Link className="display-4"
 													to="#"
 													onClick={() => props.setLogin(true)}>
@@ -317,7 +317,7 @@ const TopNav = (props) => {
 							<h5>
 								<span className="ml-3 mr-3">
 									<Img
-										src={props.auth.pp}
+										src={props.auth.profile_picture}
 										imgClass="rounded-circle"
 										width="25px"
 										height="25px"

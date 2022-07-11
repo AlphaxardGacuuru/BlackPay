@@ -113,7 +113,7 @@ const TopNavLinks = (props) => {
 						props.setNotificationVisibility("none")
 					}}>
 					<Img
-						src={props.auth.pp}
+						src={props.auth.profile_picture}
 						imgClass="rounded-circle anti-hidden"
 						width="25px"
 						height="25px"
@@ -129,7 +129,7 @@ const TopNavLinks = (props) => {
 						<div className="d-flex">
 							<div>
 								<Img
-									src={props.auth.pp}
+									src={props.auth.profile_picture}
 									imgClass="rounded-circle"
 									width="25px"
 									height="25px"

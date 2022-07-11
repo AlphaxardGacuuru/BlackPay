@@ -7,7 +7,7 @@ import Btn from '../components/Btn'
 const Register = (props) => {
 
 	let { name, email, avatar } = useParams();
-	
+
 	const [phone, setPhone] = useState('07')
 
 	const history = useHistory()
@@ -15,7 +15,9 @@ const Register = (props) => {
 	// Remove all spaces from avatar
 	avatar = avatar.replace(/\s/g, "/")
 	
-	const onSubmit = () => {
+	const onSubmit = (e) => {
+		e.preventDefault()
+
 		axios.get('/sanctum/csrf-cookie').then(() => {
 			// Register User
 			axios.post(`${props.url}/api/register`, {
@@ -23,16 +25,18 @@ const Register = (props) => {
 				email: email,
 				avatar: avatar,
 				phone: phone,
-				// remember_token: 'true'
+				password: phone,
+				password_confirmation: phone,
+				remember_token: 'true'
 			}).then((res) => {
+				console.log(res.data)
 				props.setMessages(["Account created"])
 				// Update auth data
 				axios.get(`${props.url}/api/home`)
 					.then((res) => props.setAuth(res.data))
 				// Redirect user
-				setTimeout(() => history.push('/'), 1000)
+				setTimeout(() => history.push('/'), 500)
 			}).catch(err => {
-				console.log(err.response)
 				const resErrors = err.response.data.errors
 				var resError
 				var newError = []
@@ -63,7 +67,7 @@ const Register = (props) => {
 								<form method="POST" action="" onSubmit={onSubmit}>
 									<div className="form-group row">
 										<label htmlFor="phone" className="col-md-4 col-form-label text-md-right">
-											<p style={{ color: "#006F3E" }}>Enter your Safaricom number</p>
+											<p style={{ color: "#006F3E" }}>Enter your Mpesa number</p>
 										</label>
 
 										<div className="col-md-6">
@@ -83,8 +87,8 @@ const Register = (props) => {
 										<div className="col-md-8 offset-md-4">
 											<Btn
 												type="submit"
-												btnClass="sonar-btn gold-btn float-right"
-												btnText={'register'} />
+												btnClass="btn btn-outline-success float-right"
+												text="register" />
 											<br />
 											<br />
 											<br />

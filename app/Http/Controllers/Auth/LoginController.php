@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+
 
 class LoginController extends Controller
 {
@@ -17,7 +19,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -26,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -37,4 +39,61 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectToProvider($website)
+    {
+        return Socialite::driver($website)->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub/Google/Twitter/Facebook.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback($website)
+    {
+        $user = Socialite::driver($website)->user();
+
+        if ($user->getName()) {
+            $name = $user->getName();
+        } else {
+            $name = " ";
+        }
+
+        if ($user->getEmail()) {
+            $email = $user->getEmail();
+        } else {
+            return redirect('/');
+        }
+
+        if ($user->getAvatar()) {
+            $avatar = $user->getAvatar();
+        } else {
+            $avatar = "profile-pics/male_avatar.png";
+        }
+
+        // Get Database User
+        $dbUser = User::where('email', $user->getEmail());
+
+        // Check if user exists
+        if ($dbUser->exists()) {
+
+            Auth::login($dbUser->first(), true);
+
+            return redirect()->intended();
+        } else {
+            $name = $user->getName();
+            $email = $user->getEmail();
+            $avatar = $user->getAvatar();
+            // Remove forward slashes
+            $avatar = str_replace("/", " ", $avatar);
+
+            return redirect('/#/register/' . $name . '/' . $email . '/' . $avatar);
+        }
+    }
+
+    // public function logout(Request $request)
+    // {
+    //     return Auth::logout();
+    // }
 }

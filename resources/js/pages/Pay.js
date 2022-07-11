@@ -57,11 +57,16 @@ const Pay = (props) => {
 						btnStyle={{ borderRadius: "20px", textTransform: "uppercase", width: "80%" }}
 						text="pay with mpesa"
 						onClick={(e) => {
-							e.preventDefault()
-							setBottomMenu("menu-open")
-							onPay()
-							STKPush(props.charge)
-						}} />
+							if (props.auth.email == "guest@gmail.com") {
+								props.setLogin(true)
+							} else {
+								e.preventDefault()
+								setBottomMenu("menu-open")
+								onPay()
+								STKPush(props.charge)
+							}
+						}
+						} />
 				</div>
 				<div className="col-sm-4"></div>
 			</div>

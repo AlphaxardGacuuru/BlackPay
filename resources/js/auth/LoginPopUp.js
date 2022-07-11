@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
 import {
 	GoogleLoginButton,
 	FacebookLoginButton,
@@ -13,9 +13,6 @@ const LoginPopUp = (props) => {
 
 	const onSocial = (website) => {
 		window.location.href = `${props.url}/api/login/${website}`
-
-		// axios.get(`${props.url}/api/login/${website}`)
-		// .then((res) => console.log(res.data))
 	}
 
 	const [phone, setPhone] = useState('07')
@@ -88,24 +85,27 @@ const LoginPopUp = (props) => {
 											autoFocus />
 										<br />
 
-										<Btn type="submit"
+										<Btn
+											type="submit"
 											btnClass="mysonar-btn float-right"
-											btnText={'Login'} />
+											text="Login" />
 									</form>
 									<br />
 									<br />
 
-									{/* <Btn
+									<Btn
 										btnClass="mysonar-btn"
-										btnText="back"
-										onClick={() => setPhoneLogin(false)} /> */}
+										text="back"
+										onClick={() => setPhoneLogin(false)} />
 								</div>
 							</center> :
 							<>
 								<GoogleLoginButton
 									className="mt-2 rounded-0"
 									onClick={() => onSocial("google")} />
-								{/* <FacebookLoginButton className="mt-2 rounded-0" onClick={() => onSocial("facebook")} /> */}
+								{/* <FacebookLoginButton
+									className="mt-2 rounded-0"
+									onClick={() => onSocial("facebook")} /> */}
 								<TwitterLoginButton
 									className="mt-2 rounded-0"
 									onClick={() => onSocial("twitter")} />
@@ -113,7 +113,7 @@ const LoginPopUp = (props) => {
 
 								<Btn
 									btnClass="mysonar-btn"
-									btnText="login with number"
+									text="login with number"
 									onClick={() => setPhoneLogin(true)} />
 							</>}
 					</div>

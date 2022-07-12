@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 
+
 class LoginController extends Controller
 {
     /*

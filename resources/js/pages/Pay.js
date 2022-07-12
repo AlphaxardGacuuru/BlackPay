@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 
 import Btn from '../components/Btn'
@@ -6,6 +7,8 @@ import Btn from '../components/Btn'
 const Pay = (props) => {
 
 	axios.defaults.baseURL = props.url
+
+	const history = useHistory()
 
 	const [bottomMenu, setBottomMenu] = useState()
 
@@ -41,6 +44,9 @@ const Pay = (props) => {
 							props.setMessages([res.data])
 							setBottomMenu()
 							clearInterval(intervalId)
+
+							// Redirect to History
+							setTimeout(() => history.push('/history'), 1000)
 						}
 
 						// Stop loop after 30s

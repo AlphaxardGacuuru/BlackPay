@@ -1,5 +1,5 @@
 // cacheName needs to be changed after any of the assets are changed
-const cacheName = 'BlackPay3';
+const cacheName = 'BlackPay4';
 
 const cacheAssets = [
 	'/js/app.js'

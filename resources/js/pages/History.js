@@ -3,11 +3,11 @@ import axios from 'axios'
 
 const History = (props) => {
 
-	const [history, setHistory] = useState([])
+	const [paymentHistory, setPaymentHistory] = useState([])
 
 	useEffect(() => {
 		axios.get("api/paid-tokens")
-			.then((res) => setHistory(res.data))
+			.then((res) => setPaymentHistory(res.data))
 			.catch(() => props.setErrors["Failed to fetch History"])
 	}, [])
 
@@ -25,7 +25,7 @@ const History = (props) => {
 						</tr>
 					</thead>
 					<tbody>
-						{history.map((payment, key) => (
+						{paymentHistory.map((payment, key) => (
 							<tr key={key}>
 								<td className="border-bottom border-dark">{payment.token}</td>
 								<td className="border-bottom border-dark">{payment.amount}</td>

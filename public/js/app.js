@@ -71367,12 +71367,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var History = function History(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
-      history = _useState2[0],
-      setHistory = _useState2[1];
+      paymentHistory = _useState2[0],
+      setPaymentHistory = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/paid-tokens").then(function (res) {
-      return setHistory(res.data);
+      return setPaymentHistory(res.data);
     })["catch"](function () {
       return props.setErrors["Failed to fetch History"];
     });
@@ -71397,7 +71397,7 @@ var History = function History(props) {
     className: "border-top border-dark"
   }, "In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     className: "border-top border-dark"
-  }, "Out"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, history.map(function (payment, key) {
+  }, "Out"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, paymentHistory.map(function (payment, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: key
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
@@ -71670,9 +71670,10 @@ var ParkingScanner = function ParkingScanner(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71689,8 +71690,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Pay = function Pay(props) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = props.url;
+  axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.baseURL = props.url;
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71699,8 +71702,8 @@ var Pay = function Pay(props) {
 
 
   var STKPush = function STKPush(amount) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('sanctum/csrf-cookie').then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.put("".concat(props.url, "/api/kopokopo/").concat(amount)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('sanctum/csrf-cookie').then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("".concat(props.url, "/api/kopokopo/").concat(amount)).then(function (res) {
         return props.setMessages([res.data]);
       })["catch"](function (err) {
         var resErrors = err.response.data.errors;
@@ -71719,9 +71722,9 @@ var Pay = function Pay(props) {
   };
 
   var onPay = function onPay() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('sanctum/csrf-cookie').then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('sanctum/csrf-cookie').then(function () {
       var intervalId = window.setInterval(function () {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/paid-tokens', {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('api/paid-tokens', {
           token: props.token,
           amount: props.charge
         }).then(function (res) {
@@ -71729,7 +71732,11 @@ var Pay = function Pay(props) {
           if (res.data == "Payment Received") {
             props.setMessages([res.data]);
             setBottomMenu();
-            clearInterval(intervalId);
+            clearInterval(intervalId); // Redirect to History
+
+            setTimeout(function () {
+              return history.push('/history');
+            }, 1000);
           } // Stop loop after 30s
 
 
@@ -71758,7 +71765,7 @@ var Pay = function Pay(props) {
     style: {
       color: "dodgerblue"
     }
-  }, "Kopokopo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, "Kopokopo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_3__["default"], {
     btnStyle: {
       borderRadius: "20px",
       textTransform: "uppercase",

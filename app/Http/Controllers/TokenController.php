@@ -62,7 +62,7 @@ class TokenController extends Controller
 
             $charge = $timetaken * 50;
 
-			$charge + 50;
+			$charge = $charge + 50;
 
             return response([
                 'charge' => $charge,

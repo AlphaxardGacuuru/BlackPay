@@ -48,23 +48,24 @@ const Bottomnav = (props) => {
 						</Link>
 						{/* Home End */}
 						{/* Parking */}
-						<Link
-							to="/parking-scanner"
-							style={{
-								textAlign: "center",
-								fontSize: "10px",
-								fontWeight: "100"
-							}}>
-							<span
+						{props.auth.email == "alphaxardgacuuru47@gmail.com" &&
+							<Link
+								to="/parking-scanner"
 								style={{
-									fontSize: "20px",
-									margin: "0",
-									color: location.pathname == "/parking-scanner" ? "#006F3E" : "white"
-								}}
-								className="nav-link">
-								<ScannerSVG />
-							</span>
-						</Link>
+									textAlign: "center",
+									fontSize: "10px",
+									fontWeight: "100"
+								}}>
+								<span
+									style={{
+										fontSize: "20px",
+										margin: "0",
+										color: location.pathname == "/parking-scanner" ? "#006F3E" : "white"
+									}}
+									className="nav-link">
+									<ScannerSVG />
+								</span>
+							</Link>}
 						{/* Parking End */}
 						{/* History */}
 						<Link

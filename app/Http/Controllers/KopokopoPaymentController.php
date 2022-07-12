@@ -26,7 +26,7 @@ class KopokopoPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $kopokopo = new Kopokopo;
+        $kopokopo = new KopokopoPayment;
         $kopokopo->kopokopo_id = $request->data['id'];
         $kopokopo->type = $request->data['type'];
         $kopokopo->initiation_time = $request->data['attributes']['initiation_time'];

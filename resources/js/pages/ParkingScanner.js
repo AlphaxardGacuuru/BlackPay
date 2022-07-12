@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { QrReader } from 'react-qr-reader'
@@ -7,32 +7,34 @@ const ParkingScanner = (props) => {
 
 	const [token, setToken] = useState()
 
-	// Register Token
-	const RegisterToken = (token) => {
-		axios.get('/sanctum/csrf-cookie').then(() => {
-			axios.post(`/api/tokens`, {
-				token: token,
-				type: "in"
-			}).then((res) => {
-				props.setMessages([res.data])
-				// Scroll downwards
-				window.scrollBy({
-					top: 100,
-					right: 0,
-					behavior: "smooth"
+	useEffect(() => {
+		// Register Token
+		if (token) {
+			axios.get('/sanctum/csrf-cookie').then(() => {
+				axios.post(`/api/tokens`, {
+					token: token,
+					type: "in"
+				}).then((res) => {
+					props.setMessages([res.data])
+					// Scroll downwards
+					window.scrollBy({
+						top: 100,
+						right: 0,
+						behavior: "smooth"
+					})
+				}).catch((err) => {
+					const resErrors = err.response.data.errors
+					var resError
+					var newError = []
+					for (resError in resErrors) {
+						newError.push(resErrors[resError])
+					}
+					// Get other errors
+					props.setErrors(newError)
 				})
-			}).catch((err) => {
-				const resErrors = err.response.data.errors
-				var resError
-				var newError = []
-				for (resError in resErrors) {
-					newError.push(resErrors[resError])
-				}
-				// Get other errors
-				props.setErrors(newError)
-			})
-		});
-	}
+			});
+		}
+	}, [token])
 
 	return (
 		<div className="row">
@@ -51,8 +53,6 @@ const ParkingScanner = (props) => {
 						onResult={(result, error) => {
 							if (!!result) {
 								setToken(result?.text);
-								// Register Token
-								RegisterToken(result?.text)
 							}
 
 							if (!!error) {

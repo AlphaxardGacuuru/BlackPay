@@ -71585,37 +71585,38 @@ var ParkingScanner = function ParkingScanner(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       token = _useState2[0],
-      setToken = _useState2[1]; // Register Token
+      setToken = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    // Register Token
+    if (token) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/sanctum/csrf-cookie').then(function () {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/tokens", {
+          token: token,
+          type: "in"
+        }).then(function (res) {
+          props.setMessages([res.data]); // Scroll downwards
+
+          window.scrollBy({
+            top: 100,
+            right: 0,
+            behavior: "smooth"
+          });
+        })["catch"](function (err) {
+          var resErrors = err.response.data.errors;
+          var resError;
+          var newError = [];
+
+          for (resError in resErrors) {
+            newError.push(resErrors[resError]);
+          } // Get other errors
 
 
-  var RegisterToken = function RegisterToken(token) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/sanctum/csrf-cookie').then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/tokens", {
-        token: token,
-        type: "in"
-      }).then(function (res) {
-        props.setMessages([res.data]); // Scroll downwards
-
-        window.scrollBy({
-          top: 100,
-          right: 0,
-          behavior: "smooth"
+          props.setErrors(newError);
         });
-      })["catch"](function (err) {
-        var resErrors = err.response.data.errors;
-        var resError;
-        var newError = [];
-
-        for (resError in resErrors) {
-          newError.push(resErrors[resError]);
-        } // Get other errors
-
-
-        props.setErrors(newError);
       });
-    });
-  };
-
+    }
+  }, [token]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71633,9 +71634,7 @@ var ParkingScanner = function ParkingScanner(props) {
     className: "p-2",
     onResult: function onResult(result, error) {
       if (!!result) {
-        setToken(result === null || result === void 0 ? void 0 : result.text); // Register Token
-
-        RegisterToken(result === null || result === void 0 ? void 0 : result.text);
+        setToken(result === null || result === void 0 ? void 0 : result.text);
       }
 
       if (!!error) {// console.info(error);
@@ -71772,8 +71771,7 @@ var Pay = function Pay(props) {
       } else {
         e.preventDefault();
         setBottomMenu("menu-open");
-        onPay();
-        STKPush(props.charge);
+        onPay(); // STKPush(props.charge)
       }
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

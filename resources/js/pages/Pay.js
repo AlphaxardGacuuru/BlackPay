@@ -78,7 +78,7 @@ const Pay = (props) => {
 								e.preventDefault()
 								setBottomMenu("menu-open")
 								onPay()
-								STKPush(props.charge)
+								// STKPush(props.charge)
 							}
 						}
 						} />

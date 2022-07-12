@@ -40,8 +40,8 @@ class PaidTokenController extends Controller
 
             return response($paidTokens, 200);
         } else {
-			return [];
-		}
+            return [];
+        }
     }
 
     /**
@@ -52,13 +52,15 @@ class PaidTokenController extends Controller
      */
     public function store(Request $request)
     {
+        $betterPhone = substr_replace(auth()->user()->phone, '+254', 0, -9);
+
         $in = Token::where('token', $request->input('token'))
             ->orderBy('id', 'desc')
             ->first()
             ->created_at;
 
         // Check if payment has come through
-        $hasPaid = KopokopoPayment::where('sender_phone_number', auth()->user()->phone)
+        $hasPaid = KopokopoPayment::where('sender_phone_number', $betterPhone)
             ->where('created_at', '>', $in)
             ->first();
 

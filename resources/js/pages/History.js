@@ -15,6 +15,11 @@ const History = (props) => {
 		<div className="row">
 			<div className="col-sm-4"></div>
 			<div className="col-sm-4">
+				<center>
+					<h3>Your Payment History</h3>
+				</center>
+				<br />
+
 				<table className="table table-responsive">
 					<thead className="border border-0">
 						<tr className="border border-0">

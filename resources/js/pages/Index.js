@@ -38,6 +38,7 @@ const Index = (props) => {
 				<div style={{ borderRadius: "30px" }}>
 					<center>
 						<h3>Scan QR Code</h3>
+						
 						<QrReader
 							constraints={{ facingMode: 'environment' }}
 							delay={100}

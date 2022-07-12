@@ -71771,7 +71771,8 @@ var Pay = function Pay(props) {
       } else {
         e.preventDefault();
         setBottomMenu("menu-open");
-        onPay(); // STKPush(props.charge)
+        onPay();
+        STKPush(props.charge);
       }
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

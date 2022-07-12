@@ -71271,7 +71271,7 @@ var TopNavLinks = function TopNavLinks(props) {
     "aria-haspopup": "true",
     "aria-expanded": "false"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Img__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    src: props.auth.pp,
+    src: props.auth.profile_picture,
     imgClass: "rounded-circle",
     width: "25px",
     height: "25px",

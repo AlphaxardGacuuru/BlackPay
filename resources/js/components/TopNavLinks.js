@@ -98,7 +98,7 @@ const TopNavLinks = (props) => {
 					aria-haspopup="true"
 					aria-expanded="false">
 					<Img
-						src={props.auth.pp}
+						src={props.auth.profile_picture}
 						imgClass="rounded-circle"
 						width="25px"
 						height="25px"

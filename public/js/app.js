@@ -70431,7 +70431,7 @@ function App() {
     auth: auth,
     setAuth: setAuth
   }, _defineProperty(_GLOBAL_STATE, "auth", auth), _defineProperty(_GLOBAL_STATE, "setAuth", setAuth), _defineProperty(_GLOBAL_STATE, "messages", messages), _defineProperty(_GLOBAL_STATE, "setMessages", setMessages), _defineProperty(_GLOBAL_STATE, "errors", errors), _defineProperty(_GLOBAL_STATE, "setErrors", setErrors), _defineProperty(_GLOBAL_STATE, "charge", charge), _defineProperty(_GLOBAL_STATE, "setCharge", setCharge), _defineProperty(_GLOBAL_STATE, "token", token), _defineProperty(_GLOBAL_STATE, "setToken", setToken), _defineProperty(_GLOBAL_STATE, "btnAdd", btnAdd), _defineProperty(_GLOBAL_STATE, "downloadLink", downloadLink), _defineProperty(_GLOBAL_STATE, "setDownloadLink", setDownloadLink), _defineProperty(_GLOBAL_STATE, "downloadLinkText", downloadLinkText), _defineProperty(_GLOBAL_STATE, "setDownloadLinkText", setDownloadLinkText), _GLOBAL_STATE);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_LoginPopUp__WEBPACK_IMPORTED_MODULE_8__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ScrollToTop__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_LoginPopUp__WEBPACK_IMPORTED_MODULE_8__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_4__["default"], GLOBAL_STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/register/:name/:email/:avatar",
     exact: true,
     render: function render(props) {
@@ -71564,10 +71564,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Btn */ "./resources/js/components/Btn.js");
-/* harmony import */ var _components_Img__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Img */ "./resources/js/components/Img.js");
-/* harmony import */ var _svgs_QRCodeScan__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../svgs/QRCodeScan */ "./resources/js/svgs/QRCodeScan.js");
-/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
+/* harmony import */ var react_qr_reader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-qr-reader */ "./node_modules/react-qr-reader/dist/esm/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71579,9 +71576,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
 
 
 
@@ -71622,59 +71616,41 @@ var ParkingScanner = function ParkingScanner(props) {
         });
       });
     }
-  }, [token]); // Check compatibility
-
-  if (!('BarcodeDetector' in window)) {
-    console.log('Barcode Detector is not supported by this browser.');
-  } else {
-    console.log('Barcode Detector supported!'); // Create new detector
-
-    var barcodeDetector = new BarcodeDetector({
-      formats: ['qr_code']
-    }); // Check supported types
-
-    barcodeDetector.getSupportedFormats().then(function (supportedFormats) {
-      supportedFormats.forEach(function (format) {
-        return console.log(format);
-      });
-    });
-  }
-
-  var video = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
-  var constraints = {
-    video: true
-  };
-  navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-    /* Use the stream */
-    video.current.srcObject = stream;
-
-    video.current.onloadedmetadata = function (e) {
-      video.current.play();
-    };
-  })["catch"](function (err) {
-    /* Handle the error */
-  });
+  }, [token]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row p-0"
+    className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Parking Scanner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_reader__WEBPACK_IMPORTED_MODULE_2__["QrReader"], {
+    constraints: {
+      facingMode: 'environment'
+    },
+    delay: 300 // containerStyle={{ border: "1px solid #006F3E" }}
+    // videoContainerStyle={{ border: "1px solid #006F3E" }}
+    // videoStyle={{ border: "1px solid #006F3E" }}
+    ,
+    className: "p-2",
+    onResult: function onResult(result, error) {
+      if (!!result) {
+        setToken(result === null || result === void 0 ? void 0 : result.text);
+      }
+
+      if (!!error) {// console.info(error);
+      }
+    },
+    legacyMode: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-between text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-dark text-light m-2 p-2 flex-fill",
     style: {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      overflow: "hidden"
+      borderRadius: "20px"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
-    ref: video
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "video-overlay",
-    style: {
-      fontSize: "10em",
-      color: "#006F3E"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_svgs_QRCodeScan__WEBPACK_IMPORTED_MODULE_4__["default"], null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "display-4"
+  }, token), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Code"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
   }));
 };
@@ -72070,44 +72046,6 @@ var PrivacySVG = function PrivacySVG() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PrivacySVG);
-
-/***/ }),
-
-/***/ "./resources/js/svgs/QRCodeScan.js":
-/*!*****************************************!*\
-  !*** ./resources/js/svgs/QRCodeScan.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var QRCodeScan = function QRCodeScan() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "1em",
-    height: "1em",
-    fill: "currentColor",
-    className: "bi bi-qr-code-scan",
-    viewBox: "0 0 16 16"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M12 9h2V8h-2v1Z"
-  }));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (QRCodeScan);
 
 /***/ }),
 

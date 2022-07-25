@@ -139,7 +139,7 @@ function App() {
 			<ScrollToTop />
 			<LoginPopUp {...GLOBAL_STATE} />
 
-			<TopNav {...GLOBAL_STATE} />
+			{/* <TopNav {...GLOBAL_STATE} /> */}
 
 			<Route path="/register/:name/:email/:avatar" exact render={(props) => (<Register {...GLOBAL_STATE} />)} />
 

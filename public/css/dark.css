@@ -1419,7 +1419,7 @@ html, body {
     flex-direction: column;
     -webkit-transition-duration: 800ms;
     transition-duration: 800ms;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
 	margin-right: 25%;
 	margin-left: 25%;
@@ -1649,3 +1649,11 @@ html, body {
 	opacity: 0.5;
 }
 /* Overwrite Bootstrap dropdown hover color End */
+
+.video-overlay {
+	position: absolute;
+	top: 30%;
+	/* bottom: auto; */
+	/* right: 50%; */
+	left: 30%;
+}

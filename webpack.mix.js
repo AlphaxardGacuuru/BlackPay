@@ -13,3 +13,19 @@ const mix = require('laravel-mix');
 
 mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.browserSync({
+    port: 3002,
+    proxy: "http://localhost:8002",
+    reloadDelay: 500,
+});
+
+mix.webpackConfig({
+    resolve: {
+        extensions: [".js"],
+        alias: {
+            // "@": __dirname + "/resources/js"
+            "@": "/resources/js",
+        },
+    },
+});

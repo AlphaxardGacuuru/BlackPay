@@ -1,102 +1,52 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
 
-import Btn from '../components/Btn'
+import Img from "@/components/Img"
 
-import { QrReader } from 'react-qr-reader'
-import axios from 'axios'
+import ForwardSVG from "@/svgs/ForwardSVG"
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
-const Index = (props) => {
-
-	const [timetaken, setTimetaken] = useState()
-
-	// navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-	// .then((res) => console.log(res))
-	// .catch((err) => console.log(err))
-
-	const getCharge = (token) => {
-		axios.get('sanctum/csrf-cookie').then(() => {
-			axios.get(`api/tokens/${token}`)
-				.then((res) => {
-					setTimetaken(res.data['timetaken'])
-					props.setCharge(res.data['charge'])
-					// Scroll downwards
-					window.scrollBy({
-						top: 300,
-						right: 0,
-						behavior: "smooth"
-					})
-				})
-				.catch((err) => props.setErrors([err.data]))
-		})
-	}
-
+const Index = () => {
 	return (
 		<div className="row">
-			<div className="col-sm-4"></div>
-			<div className="col-sm-4">
-				<div style={{ borderRadius: "30px" }}>
-					<center>
-						<h3>Scan QR Code</h3>
-						
-						<QrReader
-							constraints={{ facingMode: 'environment' }}
-							delay={100}
-							ViewFinder=""
-							// containerStyle={{  }}
-							// videoContainerStyle={{  }}
-							// videoStyle={{  }}
-							className="p-3"
-							onResult={(result, error) => {
-								if (!!result) {
-									props.setToken(result?.text);
-									getCharge(result?.text)
-								}
+			<div className="col-sm-1"></div>
+			<div className="col-sm-10">
+				<div className="col-sm-4 shadow rounded my-5 mx-auto px-5 p-5">
+					<Img
+						src="/storage/img/default.png"
+						style={{ width: "100%", height: "auto" }}
+					/>
+				</div>
 
-								if (!!error) {
-									// console.info(error);
-								}
-							}}
-							legacyMode />
-					</center>
-					<br />
+				<p className="my-5">
+					Welcome to Black Pay - your one-stop solution for secure and seamless
+					online payments. With Black Pay, businesses of all sizes can
+					effortlessly accept payments from customers around the globe. Our
+					intuitive platform offers a range of payment options, including
+					credit/debit cards, digital wallets, and bank transfers, ensuring
+					convenience for both merchants and customers. Backed by
+					state-of-the-art security features, Black Pay guarantees the highest
+					level of protection for every transaction, giving you peace of mind
+					and confidence in every payment. Whether you're a small startup or a
+					large enterprise, Black Pay empowers you to grow your business and
+					drive revenue with ease. Join thousands of satisfied merchants who
+					trust Black Pay for their payment processing needs and experience the
+					difference today!
+				</p>
 
-					{/* Code Box */}
-					<div className="d-flex justify-content-between text-center">
-						<div className="bg-dark text-light m-2 p-2 flex-fill"
-							style={{ borderRadius: "20px" }}>
-							<span className="display-4">{props.token}</span>
-							<h6>Code</h6>
-						</div>
+				<div className="d-flex justify-content-start my-5">
+					<div>
+						<Link to="/qr-scanner">
+							<h5>Go to Parking Scanner</h5>
+						</Link>
 					</div>
-
-					{/* Hours and Charge FlexBox */}
-					<div className="d-flex justify-content-between text-center">
-						<div className="bg-primary text-light m-2 p-2 flex-fill"
-							style={{ borderRadius: "20px" }}>
-							<span className="display-4">{timetaken}</span>
-							<h6>Hours</h6>
-						</div>
-						<div className="bg-success text-light m-2 p-2 flex-fill"
-							style={{ borderRadius: "20px" }}>
-							<span className="display-4">{props.charge && "KES "}{props.charge}</span>
-							<h6>Charge</h6>
-						</div>
-					</div>
-
-					{/* Pay Button */}
-					<div className="mt-4 p-2">
-						{props.charge &&
-							<Link
-								to="/pay"
-								className="w-100 btn btn-outline-success"
-								style={{ borderRadius: "20px", textTransform: "uppercase" }}>
-								proceed to payment
-							</Link>}
+					<div className="text-white ml-2">
+						<Link to="/qr-scanner">
+							<ForwardSVG />
+						</Link>
 					</div>
 				</div>
 			</div>
-			<div className="col-sm-4"></div>
+			<div className="col-sm-1"></div>
 		</div>
 	)
 }

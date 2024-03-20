@@ -70506,9 +70506,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _svgs_HomeSVG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../svgs/HomeSVG */ "./resources/js/svgs/HomeSVG.js");
-/* harmony import */ var _svgs_PersonSVG__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../svgs/PersonSVG */ "./resources/js/svgs/PersonSVG.js");
-/* harmony import */ var _svgs_ScannerSVG__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../svgs/ScannerSVG */ "./resources/js/svgs/ScannerSVG.js");
+/* harmony import */ var _svgs_HomeSVG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/svgs/HomeSVG */ "./resources/js/svgs/HomeSVG.js");
+/* harmony import */ var _svgs_PersonSVG__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/svgs/PersonSVG */ "./resources/js/svgs/PersonSVG.js");
+/* harmony import */ var _svgs_ScannerSVG__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/svgs/ScannerSVG */ "./resources/js/svgs/ScannerSVG.js");
+/* harmony import */ var _svgs_QRSVG__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/svgs/QRSVG */ "./resources/js/svgs/QRSVG.js");
+
 
 
 
@@ -70548,7 +70550,21 @@ var Bottomnav = function Bottomnav(props) {
       color: location.pathname == "/" ? "#006F3E" : "white"
     },
     className: "nav-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_svgs_HomeSVG__WEBPACK_IMPORTED_MODULE_2__["default"], null))), props.auth.email == "alphaxardgacuuru47@gmail.com" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_svgs_HomeSVG__WEBPACK_IMPORTED_MODULE_2__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/qr-scanner",
+    style: {
+      textAlign: "center",
+      fontSize: "10px",
+      fontWeight: "100"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      fontSize: "20px",
+      margin: "0",
+      color: location.pathname == "/qr-scanner" ? "#006F3E" : "white"
+    },
+    className: "nav-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_svgs_QRSVG__WEBPACK_IMPORTED_MODULE_5__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/parking-scanner",
     style: {
       textAlign: "center",

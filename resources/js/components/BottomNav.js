@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React from "react"
+import { Link, useLocation } from "react-router-dom"
 
-import HomeSVG from '../svgs/HomeSVG';
-import PersonSVG from '../svgs/PersonSVG';
-import ScannerSVG from '../svgs/ScannerSVG';
+import HomeSVG from "@/svgs/HomeSVG"
+import PersonSVG from "@/svgs/PersonSVG"
+import ScannerSVG from "@/svgs/ScannerSVG"
+import QRSVG from "@/svgs/QRSVG"
 
 const Bottomnav = (props) => {
-
 	const location = useLocation()
 
 	var display
@@ -14,11 +14,12 @@ const Bottomnav = (props) => {
 
 	// Hide BottomNav from various pages
 	location.pathname.match("/privacy-policy") ||
-		location.pathname.match("/download-app") ||
-		location.pathname.match("/referral") ||
-		location.pathname.match("/login") ||
-		location.pathname.match("/register") ?
-		display = "none" : display = ""
+	location.pathname.match("/download-app") ||
+	location.pathname.match("/referral") ||
+	location.pathname.match("/login") ||
+	location.pathname.match("/register")
+		? (display = "none")
+		: (display = "")
 
 	return (
 		<>
@@ -26,7 +27,9 @@ const Bottomnav = (props) => {
 			<br className="anti-hidden" />
 			<div className="bottomNav menu-content-area header-social-area">
 				{/* Bottom Nav */}
-				<div className="anti-hidden" style={{ display: display }}>
+				<div
+					className="anti-hidden"
+					style={{ display: display }}>
 					<div className="container-fluid menu-area d-flex justify-content-between">
 						{/* Home */}
 						<Link
@@ -34,38 +37,60 @@ const Bottomnav = (props) => {
 							style={{
 								textAlign: "center",
 								fontSize: "10px",
-								fontWeight: "100"
+								fontWeight: "100",
 							}}>
 							<span
 								style={{
 									fontSize: "20px",
 									margin: "0",
-									color: location.pathname == "/" ? "#006F3E" : "white"
+									color: location.pathname == "/" ? "#006F3E" : "white",
 								}}
 								className="nav-link">
 								<HomeSVG />
 							</span>
 						</Link>
 						{/* Home End */}
-						{/* Parking */}
-						{props.auth.email == "alphaxardgacuuru47@gmail.com" &&
-							<Link
-								to="/parking-scanner"
+						{/* QR */}
+						<Link
+							to="/qr-scanner"
+							style={{
+								textAlign: "center",
+								fontSize: "10px",
+								fontWeight: "100",
+							}}>
+							<span
 								style={{
-									textAlign: "center",
-									fontSize: "10px",
-									fontWeight: "100"
-								}}>
-								<span
-									style={{
-										fontSize: "20px",
-										margin: "0",
-										color: location.pathname == "/parking-scanner" ? "#006F3E" : "white"
-									}}
-									className="nav-link">
-									<ScannerSVG />
-								</span>
-							</Link>}
+									fontSize: "20px",
+									margin: "0",
+									color:
+										location.pathname == "/qr-scanner" ? "#006F3E" : "white",
+								}}
+								className="nav-link">
+								<QRSVG />
+							</span>
+						</Link>
+						{/* QR End */}
+						{/* Parking */}
+						<Link
+							to="/parking-scanner"
+							style={{
+								textAlign: "center",
+								fontSize: "10px",
+								fontWeight: "100",
+							}}>
+							<span
+								style={{
+									fontSize: "20px",
+									margin: "0",
+									color:
+										location.pathname == "/parking-scanner"
+											? "#006F3E"
+											: "white",
+								}}
+								className="nav-link">
+								<ScannerSVG />
+							</span>
+						</Link>
 						{/* Parking End */}
 						{/* History */}
 						<Link
@@ -73,12 +98,12 @@ const Bottomnav = (props) => {
 							style={{
 								textAlign: "center",
 								fontSize: "10px",
-								fontWeight: "100"
+								fontWeight: "100",
 							}}>
 							<span
 								style={{
 									fontSize: "23px",
-									color: location.pathname == "/history" ? "#006F3E" : "white"
+									color: location.pathname == "/history" ? "#006F3E" : "white",
 								}}
 								className="nav-link">
 								<PersonSVG />

@@ -8,7 +8,7 @@ import CloseSVG from "@/svgs/CloseSVG"
 import LogoutSVG from "@/svgs/LogoutSVG"
 import DownloadSVG from "@/svgs/DownloadSVG"
 import PrivacySVG from "@/svgs/PrivacySVG"
-import LogoSVG from "@/svgs/LogoSVG"
+import LogoAlternateSVG from "@/svgs/LogoAlternateSVG"
 import HomeSVG from "@/svgs/HomeSVG"
 import QRSVG from "@/svgs/QRSVG"
 import PersonSVG from "@/svgs/PersonSVG"
@@ -103,10 +103,8 @@ const TopNav = (props) => {
 					</div>
 					{/* <!-- Logo Area --> */}
 					<div className="logo-area">
-						<Link
-							to="/"
-							style={{ color: "#006F3E" }}>
-							<LogoSVG />
+						<Link to="/">
+							<LogoAlternateSVG />
 						</Link>
 					</div>
 					{/* <!-- Nav --> */}
@@ -223,10 +221,8 @@ const TopNav = (props) => {
 								<div className="menu-area d-flex justify-content-between">
 									{/* <!-- Logo Area  --> */}
 									<div className="logo-area">
-										<Link
-											to="/"
-											style={{ color: "#006F3E" }}>
-											<LogoSVG />
+										<Link to="/">
+											<LogoAlternateSVG />
 										</Link>
 									</div>
 									<div className="menu-content-area d-flex align-items-center">

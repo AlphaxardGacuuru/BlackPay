@@ -12,7 +12,7 @@ const Index = () => {
 			<div className="col-sm-10">
 				<div className="col-sm-4 shadow rounded my-5 mx-auto px-5 p-5">
 					<Img
-						src="/storage/img/default.png"
+						src="/storage/img/default-alternate.png"
 						style={{ width: "100%", height: "auto" }}
 					/>
 				</div>

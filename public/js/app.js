@@ -6362,6 +6362,259 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/flutterwave-react-v3/dist/index.es.js":
+/*!************************************************************!*\
+  !*** ./node_modules/flutterwave-react-v3/dist/index.es.js ***!
+  \************************************************************/
+/*! exports provided: FlutterWaveButton, FlutterWaveTypes, closePaymentModal, useFlutterwave */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlutterWaveButton", function() { return FlutterWaveButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlutterWaveTypes", function() { return types; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closePaymentModal", function() { return closePaymentModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useFlutterwave", function() { return useFlutterwave; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * Check out {@link https://developer.flutterwave.com/docs/flutterwave-standard} for more information.
+ */
+
+var types = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});
+
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var srcUrl = 'https://checkout.flutterwave.com/v3.js';
+var MAX_ATTEMPT_DEFAULT_VALUE = 3;
+var INTERVAL_DEFAULT_VALUE = 1;
+var attempt = 1; // Track the attempt count
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isNumber(value) {
+    return typeof value === 'number';
+}
+function useFWScript(_a) {
+    var _b = _a.maxAttempt, maxAttempt = _b === void 0 ? MAX_ATTEMPT_DEFAULT_VALUE : _b, _c = _a.interval, interval = _c === void 0 ? INTERVAL_DEFAULT_VALUE : _c;
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_d) {
+            // Validate and sanitize variables
+            maxAttempt = isNumber(maxAttempt) ? Math.max(1, maxAttempt) : MAX_ATTEMPT_DEFAULT_VALUE; // Ensure minimum of 1 for maxAttempt, revert to the default value otherwise
+            interval = isNumber(interval) ? Math.max(1, interval) : INTERVAL_DEFAULT_VALUE; // Ensure minimum of 1 for retryDuration, revert to the default value otherwise
+            return [2 /*return*/, new Promise(function (resolve, reject) {
+                    var script = document.createElement('script');
+                    script.src = srcUrl;
+                    script.async = true;
+                    var onScriptLoad = function () {
+                        script.removeEventListener('load', onScriptLoad);
+                        script.removeEventListener('error', onScriptError);
+                        resolve();
+                    };
+                    var onScriptError = function () {
+                        document.body.removeChild(script);
+                        // eslint-disable-next-line no-console
+                        console.log("Flutterwave script download failed. Attempt: " + attempt);
+                        if (attempt < maxAttempt) {
+                            ++attempt;
+                            setTimeout(function () { return useFWScript({ maxAttempt: maxAttempt, interval: interval }).then(resolve).catch(reject); }, (interval * 1000));
+                        }
+                        else {
+                            reject(new Error('Failed to load payment modal. Check your internet connection and retry later.'));
+                        }
+                    };
+                    script.addEventListener('load', onScriptLoad);
+                    script.addEventListener('error', onScriptError);
+                    document.body.appendChild(script);
+                })];
+        });
+    });
+}
+
+var isFWScriptLoading = false;
+/**
+ *
+ * @param config takes in configuration for flutterwave
+ * @returns handleFlutterwavePayment function
+ */
+function useFlutterwave(flutterWaveConfig) {
+    /**
+     *
+     * @param object - {callback, onClose}
+     */
+    return function handleFlutterwavePayment(_a) {
+        var _b, _c;
+        var callback = _a.callback, onClose = _a.onClose;
+        return __awaiter(this, void 0, void 0, function () {
+            var flutterwaveArgs;
+            var _this = this;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        if (isFWScriptLoading) {
+                            return [2 /*return*/];
+                        }
+                        if (!!window.FlutterwaveCheckout) return [3 /*break*/, 2];
+                        isFWScriptLoading = true;
+                        return [4 /*yield*/, useFWScript(__assign({}, flutterWaveConfig.retry))];
+                    case 1:
+                        _d.sent();
+                        isFWScriptLoading = false;
+                        _d.label = 2;
+                    case 2:
+                        flutterwaveArgs = __assign(__assign({}, flutterWaveConfig), { amount: (_b = flutterWaveConfig.amount) !== null && _b !== void 0 ? _b : 0, callback: function (response) { return __awaiter(_this, void 0, void 0, function () {
+                                var _a;
+                                return __generator(this, function (_b) {
+                                    switch (_b.label) {
+                                        case 0:
+                                            if (!(response.status === 'successful')) return [3 /*break*/, 2];
+                                            callback(response);
+                                            return [4 /*yield*/, fetch('https://cors-anywhere.herokuapp.com/https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+                                                    method: 'post',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                    },
+                                                    body: JSON.stringify({
+                                                        publicKey: flutterWaveConfig.public_key,
+                                                        language: 'Flutterwave-React-v3',
+                                                        version: '1.0.7',
+                                                        title: "" + ((flutterWaveConfig === null || flutterWaveConfig === void 0 ? void 0 : flutterWaveConfig.payment_options.split(',').length) > 1 ? 'Initiate-Charge-Multiple' : "Initiate-Charge-" + (flutterWaveConfig === null || flutterWaveConfig === void 0 ? void 0 : flutterWaveConfig.payment_options)),
+                                                        message: '15s'
+                                                    })
+                                                })];
+                                        case 1:
+                                            _b.sent();
+                                            return [3 /*break*/, 4];
+                                        case 2:
+                                            callback(response);
+                                            return [4 /*yield*/, fetch('https://cors-anywhere.herokuapp.com/https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+                                                    method: 'post',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                    },
+                                                    body: JSON.stringify({
+                                                        publicKey: (_a = flutterWaveConfig.public_key) !== null && _a !== void 0 ? _a : '',
+                                                        language: 'Flutterwave-React-v3',
+                                                        version: '1.0.7',
+                                                        title: "" + ((flutterWaveConfig === null || flutterWaveConfig === void 0 ? void 0 : flutterWaveConfig.payment_options.split(',').length) > 1 ? 'Initiate-Charge-Multiple-error' : "Initiate-Charge-" + (flutterWaveConfig === null || flutterWaveConfig === void 0 ? void 0 : flutterWaveConfig.payment_options) + "-error"),
+                                                        message: '15s'
+                                                    })
+                                                })];
+                                        case 3:
+                                            _b.sent();
+                                            _b.label = 4;
+                                        case 4: return [2 /*return*/];
+                                    }
+                                });
+                            }); }, onclose: onClose, payment_options: (_c = flutterWaveConfig === null || flutterWaveConfig === void 0 ? void 0 : flutterWaveConfig.payment_options) !== null && _c !== void 0 ? _c : 'card, ussd, mobilemoney' });
+                        // @ts-ignore
+                        window.FlutterwaveCheckout(flutterwaveArgs);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+}
+
+var FlutterWaveButton = function (_a) {
+    var text = _a.text, className = _a.className, children = _a.children, callback = _a.callback, onClose = _a.onClose, disabled = _a.disabled, config = __rest(_a, ["text", "className", "children", "callback", "onClose", "disabled"]);
+    var handleFlutterPayment = useFlutterwave(config);
+    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { disabled: disabled, className: className, onClick: function () { return handleFlutterPayment({ callback: callback, onClose: onClose }); } }, text || children));
+};
+
+/**
+ * function to be called when you want to close payment
+ */
+function closePaymentModal() {
+    document.getElementsByName('checkout').forEach(function (item) {
+        item.setAttribute('style', 'position:fixed;top:0;left:0;z-index:-1;border:none;opacity:0;pointer-events:none;width:100%;height:100%;');
+        item.setAttribute('id', 'flwpugpaidid');
+        item.setAttribute('src', 'https://checkout.flutterwave.com/?');
+        document.body.style.overflow = '';
+    });
+}
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/history/esm/history.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/esm/history.js ***!
@@ -70232,8 +70485,13 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.Axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.Axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // window.Axios.defaults.headers.common[
+// "Authorization"
+// ] = `Bearer ${process.env.MIX_FW_SECRET_KEY}`
+// window.Axios.defaults.headers.common["Content-Type"] = "application/json"
+// Axios.defaults.withCredentials = true
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -70620,7 +70878,8 @@ var Btn = function Btn(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     style: btnStyle,
     className: btnClass,
-    onClick: onClick
+    onClick: onClick,
+    disabled: loading
   }, text, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "spinner-border ml-2 my-auto",
     style: {
@@ -70635,7 +70894,7 @@ var Btn = function Btn(_ref) {
 };
 
 Btn.defaultProps = {
-  btnClass: 'btn btn-outline-success',
+  btnClass: "btn btn-outline-success",
   btnStyle: {
     borderRadius: "20px",
     minWidth: "100px",
@@ -70815,7 +71074,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var TopNav = function TopNav(props) {
-  axios.defaults.baseURL = props.url;
+  Axios.defaults.baseURL = props.url;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState2 = _slicedToArray(_useState, 2),
@@ -70845,7 +71104,7 @@ var TopNav = function TopNav(props) {
       setNotifications = _useState10[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {// Fetch Notifications
-    // axios.get(`/api/notifications`)
+    // Axios.get(`/api/notifications`)
     // 	.then((res) => {
     // 		setNotifications(res.data)
     // 		props.setLocalStorage("notifications", res.data)
@@ -70854,8 +71113,8 @@ var TopNav = function TopNav(props) {
 
   var logout = function logout(e) {
     e.preventDefault();
-    axios.get("/sanctum/csrf-cookie").then(function () {
-      axios.post("".concat(props.url, "/api/logout")).then(function (res) {
+    Axios.get("/sanctum/csrf-cookie").then(function () {
+      Axios.post("".concat(props.url, "/api/logout")).then(function (res) {
         // Remove phone from localStorage
         localStorage.removeItem("auth");
         props.setMessages(["Logged out"]); // Update Auth
@@ -70871,10 +71130,10 @@ var TopNav = function TopNav(props) {
   };
 
   var onNotification = function onNotification() {
-    axios.get("sanctum/csrf-cookie").then(function () {
-      axios.put("".concat(props.url, "/api/notifications/update")).then(function (res) {
+    Axios.get("sanctum/csrf-cookie").then(function () {
+      Axios.put("".concat(props.url, "/api/notifications/update")).then(function (res) {
         // Update notifications
-        axios.get("".concat(props.url, "/api/notifications")).then(function (res) {
+        Axios.get("".concat(props.url, "/api/notifications")).then(function (res) {
           return setNotifications(res.data);
         });
       });
@@ -70882,9 +71141,9 @@ var TopNav = function TopNav(props) {
   };
 
   var onDeleteNotifications = function onDeleteNotifications(id) {
-    axios["delete"]("".concat(props.url, "/api/notifications/").concat(id)).then(function (res) {
+    Axios["delete"]("".concat(props.url, "/api/notifications/").concat(id)).then(function (res) {
       // Update Notifications
-      axios.get("".concat(props.url, "/api/notifications")).then(function (res) {
+      Axios.get("".concat(props.url, "/api/notifications")).then(function (res) {
         return setNotifications(res.data);
       });
     });
@@ -71324,6 +71583,89 @@ var TopNavLinks = function TopNavLinks(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/payments/FlutterWaveHookBtn.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/payments/FlutterWaveHookBtn.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var flutterwave_react_v3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flutterwave-react-v3 */ "./node_modules/flutterwave-react-v3/dist/index.es.js");
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Btn */ "./resources/js/components/Btn.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var FlutterWaveHookBtn = function FlutterWaveHookBtn() {
+  var _config;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var config = (_config = {
+    public_key: "FLWPUBK_TEST-e641803646aa2e52bb3bf2f0753bd1a1-X",
+    tx_ref: Date.now(),
+    payment_options: "card, mpesa, mobilemoney, ussd",
+    currency: "KES",
+    amount: "100",
+    card_number: "5531886652142950",
+    cvv: "564",
+    expiry_month: "09",
+    expiry_year: "32"
+  }, _defineProperty(_config, "tx_ref", "MC-3243e"), _defineProperty(_config, "customer", {
+    name: "Alphaxard Gacuuru",
+    email: "alphaxardgacuuru47@gmail.com",
+    phone_number: "0700364446"
+  }), _defineProperty(_config, "customizations", {
+    title: "Fee Payment",
+    description: "Payment of Fees",
+    logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg"
+  }), _config);
+  var handleFlutterPayment = Object(flutterwave_react_v3__WEBPACK_IMPORTED_MODULE_1__["useFlutterwave"])(config);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Btn__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "charge card",
+    onClick: function onClick() {
+      setLoading(true);
+      handleFlutterPayment({
+        callback: function callback(res) {
+          setLoading(false);
+          console.log(res); // Close the modal programmatically
+
+          Object(flutterwave_react_v3__WEBPACK_IMPORTED_MODULE_1__["closePaymentModal"])();
+        },
+        onClose: function onClose() {
+          setLoading(false);
+        }
+      });
+    },
+    loading: loading
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FlutterWaveHookBtn);
+
+/***/ }),
+
 /***/ "./resources/js/pages/History.js":
 /*!***************************************!*\
   !*** ./resources/js/pages/History.js ***!
@@ -71417,16 +71759,110 @@ var History = function History(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Img__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/Img */ "./resources/js/components/Img.js");
-/* harmony import */ var _svgs_ForwardSVG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/svgs/ForwardSVG */ "./resources/js/svgs/ForwardSVG.js");
-/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom/cjs/react-router-dom.min */ "./node_modules/react-router-dom/cjs/react-router-dom.min.js");
-/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom/cjs/react-router-dom.min */ "./node_modules/react-router-dom/cjs/react-router-dom.min.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Img__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Img */ "./resources/js/components/Img.js");
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Btn */ "./resources/js/components/Btn.js");
+/* harmony import */ var _svgs_ForwardSVG__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/svgs/ForwardSVG */ "./resources/js/svgs/ForwardSVG.js");
+/* harmony import */ var _components_payments_FlutterWaveHookBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/payments/FlutterWaveHookBtn */ "./resources/js/components/payments/FlutterWaveHookBtn.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
 
-var Index = function Index() {
+
+
+
+
+var Index = function Index(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var FW_PUBLIC_KEY = "FLWPUBK_TEST-e641803646aa2e52bb3bf2f0753bd1a1-X";
+  var FW_SECRET_KEY = "FLWSECK_TEST-878bc1993d46f2e599983911d9600e56-X";
+  var headers = {
+    Authorization: "Bearer ".concat(FW_SECRET_KEY),
+    "Content-Type": "application/json"
+  };
+  var sandboxDetails = {
+    card_number: "5531886652142950",
+    cvv: "564",
+    expiry_month: "09",
+    expiry_year: "32",
+    currency: "NGN",
+    amount: "100",
+    fullname: "Yolande Aglaé Colbert",
+    email: "user@example.com",
+    tx_ref: "MC-3243e",
+    redirect_url: "https://www,flutterwave.ng"
+  };
+  var cardDetails = {
+    card_number: "4890010101294779",
+    cvv: "537",
+    expiry_month: "07",
+    expiry_year: "24",
+    currency: "KES",
+    amount: "10",
+    fullname: "Alphaxard Njoroge Gacuuru",
+    email: "alphaxardgacuuru47@gmail.com",
+    tx_ref: "MC-3243e",
+    redirect_url: "http://localhost:3002"
+  };
+  var mpesaDetails = {
+    tx_ref: "MC-15852113s09v5050e8",
+    amount: "10",
+    currency: "KES",
+    email: "user@example.com",
+    phone_number: "25454709929220",
+    fullname: "Yolande Aglaé Colbert"
+  };
+
+  var onChargeCard = function onChargeCard() {
+    setLoading(true);
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("https://api.flutterwave.com/v3/charges?type=mpesa", {
+      mpesaDetails: mpesaDetails
+    }, // { details },
+    {
+      headers: headers
+    }).then(function (res) {
+      setLoading(false);
+      console.log(res);
+    })["catch"](function (err) {
+      setLoading(false);
+      console.log(err);
+    });
+  };
+
+  var onChargeCard2 = function onChargeCard2() {
+    setLoading(true);
+    fetch("https://api.flutterwave.com/v3/charges?type=mpesa", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(mpesaDetails)
+    }).then(function (data) {
+      setLoading(false);
+      console.log(data);
+    })["catch"](function (error) {
+      setLoading(false);
+      console.error("Error:", error);
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71435,23 +71871,25 @@ var Index = function Index() {
     className: "col-sm-10"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4 shadow rounded my-5 mx-auto px-5 p-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Img__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Img__WEBPACK_IMPORTED_MODULE_3__["default"], {
     src: "/storage/img/default-alternate.png",
     style: {
       width: "100%",
       height: "auto"
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-center my-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_payments_FlutterWaveHookBtn__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "my-5"
   }, "Welcome to Black Pay - your one-stop solution for secure and seamless online payments. With Black Pay, businesses of all sizes can effortlessly accept payments from customers around the globe. Our intuitive platform offers a range of payment options, including credit/debit cards, digital wallets, and bank transfers, ensuring convenience for both merchants and customers. Backed by state-of-the-art security features, Black Pay guarantees the highest level of protection for every transaction, giving you peace of mind and confidence in every payment. Whether you're a small startup or a large enterprise, Black Pay empowers you to grow your business and drive revenue with ease. Join thousands of satisfied merchants who trust Black Pay for their payment processing needs and experience the difference today!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-start my-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/qr-scanner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Go to Parking Scanner"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-white ml-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/qr-scanner"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_svgs_ForwardSVG__WEBPACK_IMPORTED_MODULE_2__["default"], null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_svgs_ForwardSVG__WEBPACK_IMPORTED_MODULE_5__["default"], null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-1"
   }));
 };
@@ -71983,7 +72421,7 @@ var ForwardSVG = function ForwardSVG() {
     className: "bi bi-arrow-right",
     viewBox: "0 0 16 16"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "fill-rule": "evenodd",
+    fillRule: "evenodd",
     d: "M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
   }));
 };

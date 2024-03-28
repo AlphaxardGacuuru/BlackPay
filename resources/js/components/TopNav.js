@@ -15,7 +15,7 @@ import PersonSVG from "@/svgs/PersonSVG"
 import MenuSVG from "@/svgs/MenuSVG"
 
 const TopNav = (props) => {
-	axios.defaults.baseURL = props.url
+	Axios.defaults.baseURL = props.url
 
 	const [menu, setMenu] = useState("")
 
@@ -30,7 +30,7 @@ const TopNav = (props) => {
 
 	useEffect(() => {
 		// Fetch Notifications
-		// axios.get(`/api/notifications`)
+		// Axios.get(`/api/notifications`)
 		// 	.then((res) => {
 		// 		setNotifications(res.data)
 		// 		props.setLocalStorage("notifications", res.data)
@@ -40,8 +40,8 @@ const TopNav = (props) => {
 	const logout = (e) => {
 		e.preventDefault()
 
-		axios.get("/sanctum/csrf-cookie").then(() => {
-			axios.post(`${props.url}/api/logout`).then((res) => {
+		Axios.get("/sanctum/csrf-cookie").then(() => {
+			Axios.post(`${props.url}/api/logout`).then((res) => {
 				// Remove phone from localStorage
 				localStorage.removeItem("auth")
 				props.setMessages(["Logged out"])
@@ -57,10 +57,10 @@ const TopNav = (props) => {
 	}
 
 	const onNotification = () => {
-		axios.get("sanctum/csrf-cookie").then(() => {
-			axios.put(`${props.url}/api/notifications/update`).then((res) => {
+		Axios.get("sanctum/csrf-cookie").then(() => {
+			Axios.put(`${props.url}/api/notifications/update`).then((res) => {
 				// Update notifications
-				axios
+				Axios
 					.get(`${props.url}/api/notifications`)
 					.then((res) => setNotifications(res.data))
 			})
@@ -68,9 +68,9 @@ const TopNav = (props) => {
 	}
 
 	const onDeleteNotifications = (id) => {
-		axios.delete(`${props.url}/api/notifications/${id}`).then((res) => {
+		Axios.delete(`${props.url}/api/notifications/${id}`).then((res) => {
 			// Update Notifications
-			axios
+			Axios
 				.get(`${props.url}/api/notifications`)
 				.then((res) => setNotifications(res.data))
 		})

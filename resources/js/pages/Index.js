@@ -1,11 +1,97 @@
-import React from "react"
-
-import Img from "@/components/Img"
-
-import ForwardSVG from "@/svgs/ForwardSVG"
+import React, { useState } from "react"
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
-const Index = () => {
+import Axios from "axios"
+
+import Img from "@/components/Img"
+import Btn from "@/components/Btn"
+
+import ForwardSVG from "@/svgs/ForwardSVG"
+import FlutterWaveHookBtn from "../components/payments/FlutterWaveHookBtn"
+
+const Index = (props) => {
+	const [loading, setLoading] = useState()
+
+	const FW_PUBLIC_KEY = process.env.MIX_FW_PUBLIC_KEY_SANDBOX
+	const FW_SECRET_KEY = process.env.MIX_FW_SECRET_KEY_SANDBOX
+
+	const headers = {
+		Authorization: `Bearer ${FW_SECRET_KEY}`,
+		"Content-Type": "application/json",
+	}
+
+	const sandboxDetails = {
+		card_number: "5531886652142950",
+		cvv: "564",
+		expiry_month: "09",
+		expiry_year: "32",
+		currency: "NGN",
+		amount: "100",
+		fullname: "Yolande Aglaé Colbert",
+		email: "user@example.com",
+		tx_ref: "MC-3243e",
+		redirect_url: "https://www,flutterwave.ng",
+	}
+
+	const cardDetails = {
+		card_number: "4890010101294779",
+		cvv: "537",
+		expiry_month: "07",
+		expiry_year: "24",
+		currency: "KES",
+		amount: "10",
+		fullname: "Alphaxard Njoroge Gacuuru",
+		email: "alphaxardgacuuru47@gmail.com",
+		tx_ref: "MC-3243e",
+		redirect_url: "http://localhost:3002",
+	}
+
+	const mpesaDetails = {
+		tx_ref: "MC-15852113s09v5050e8",
+		amount: "10",
+		currency: "KES",
+		email: "user@example.com",
+		phone_number: "25454709929220",
+		fullname: "Yolande Aglaé Colbert",
+	}
+
+	const onChargeCard = () => {
+		setLoading(true)
+
+		Axios.get(
+			"https://api.flutterwave.com/v3/charges?type=mpesa",
+			{ mpesaDetails },
+			// { details },
+			{ headers }
+		)
+			.then((res) => {
+				setLoading(false)
+				console.log(res)
+			})
+			.catch((err) => {
+				setLoading(false)
+				console.log(err)
+			})
+	}
+
+	const onChargeCard2 = () => {
+		setLoading(true)
+
+		fetch("https://api.flutterwave.com/v3/charges?type=mpesa", {
+			method: "POST",
+			headers: headers,
+			body: JSON.stringify(mpesaDetails),
+		})
+			.then((data) => {
+				setLoading(false)
+				console.log(data)
+			})
+			.catch((error) => {
+				setLoading(false)
+				console.error("Error:", error)
+			})
+	}
+
 	return (
 		<div className="row">
 			<div className="col-sm-1"></div>
@@ -15,6 +101,18 @@ const Index = () => {
 						src="/storage/img/default-alternate.png"
 						style={{ width: "100%", height: "auto" }}
 					/>
+				</div>
+
+				{/* <Btn
+					text="charge card"
+					onClick={onChargeCard2}
+					loading={loading}
+				/> */}
+
+				{/* <FlutterWaveBtn /> */}
+
+				<div className="d-flex justify-content-center my-5">
+					<FlutterWaveHookBtn />
 				</div>
 
 				<p className="my-5">

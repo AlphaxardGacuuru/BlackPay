@@ -19,9 +19,17 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.Axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.Axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+// window.Axios.defaults.headers.common[
+	// "Authorization"
+// ] = `Bearer ${process.env.MIX_FW_SECRET_KEY}`
+
+// window.Axios.defaults.headers.common["Content-Type"] = "application/json"
+
+// Axios.defaults.withCredentials = true
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

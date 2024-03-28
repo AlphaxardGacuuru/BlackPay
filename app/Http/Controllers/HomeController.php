@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -16,7 +15,7 @@ class HomeController extends Controller
     {
         // Check if user is logged in
         if (Auth::check()) {
-			return Auth::user();
+            return Auth::user();
         }
     }
 }
